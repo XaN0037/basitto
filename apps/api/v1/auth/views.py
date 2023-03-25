@@ -50,7 +50,6 @@ class AuthView(GenericAPIView):
                 })
             mobile = params.get("mobile")
 
-            print('salomssssssssssssssssssssssssssssssssssssssssssssssssss')
 
             if otp.mobile != mobile:
                 return Response({
@@ -69,7 +68,6 @@ class AuthView(GenericAPIView):
                 return Response({
                     "Error": "Bu email allaqachon bor"
                 })
-            print('saloms3333333333333333333333333333333333333333333333ss')
 
             serializer = self.get_serializer(data=params)
             serializer.is_valid(raise_exception=True)
@@ -81,7 +79,6 @@ class AuthView(GenericAPIView):
             token = Token()
             token.user = user
             token.save()
-            print('saloms3qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww333ss')
 
         elif method == "login":
             nott = 'mobile' if "mobile" not in params else "password" if "password" not in params else None

@@ -26,32 +26,6 @@ class UserView(GenericAPIView):
 
     def post(self, requests, *args, **kwargs):
         data = requests.data
-        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",data)
-        # method = data['method']
-        # params = data['params']
-        # if not method:
-        #     return Response({
-        #         "error": "method to'ldirilmagan"
-        #     })
-        # nott = "old" if "old" not in params else "new" if 'new' not in params else None
-        # if nott:
-        #     return Response({
-        #         "error": f"{nott} sections is not filled to'ldirilmagan"
-        #     })
-        # if len (params["new"]) <7 or params['new'].islower() or params["new"].isalpha():
-        #     return Response({
-        #         "status": "Parolda 8 ta simvol yoki katta xarf qatnashishi shart"
-        #     })
-        #
-        # if not requests.user.check_password(params['old']):
-        #     return Response({"error":"eski parol bilan bir xil qaramaysizmi"})
-        #
-        # requests.user.set_password(params['new'])
-        # requests.user.save()
-        #
-        # return Response({"status":"parol pizdess karocheee",
-        #                  "user": "bu joyda userni format qivorasss Sanjar aka"})
-        #
 
         nott = "old" if "old" not in data else "new" if 'new' not in data else None
         if nott:
