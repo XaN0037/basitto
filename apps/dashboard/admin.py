@@ -7,5 +7,5 @@ from apps.dashboard.models import *
 
 
 admin.site.register(SubCategory)
-admin.site.register(Karniz)
-admin.site.register(Kalso)
+# admin.site.register(Karniz)
+# admin.site.register(Kalso)
