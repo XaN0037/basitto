@@ -50,7 +50,6 @@ class AuthView(GenericAPIView):
                 })
             mobile = params.get("mobile")
 
-
             if otp.mobile != mobile:
                 return Response({
                     "Error": f"Bu boshqa telefon raqami"
@@ -74,7 +73,6 @@ class AuthView(GenericAPIView):
             user = serializer.create(serializer.data)
             user.set_password(params["password"])
             user.save()
-
 
             token = Token()
             token.user = user
