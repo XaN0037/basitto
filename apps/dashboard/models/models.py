@@ -1,24 +1,23 @@
-# from django.db import models
+from django.db import models
+
+from apps.api.models import User
+from .products import Product
+
 #
-# from apps.api.models import User
-# from .products import Product
 #
-#
-#
-# class Basket(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-#     quantity = models.IntegerField(default=1)
-#     summa = models.IntegerField(blank=True, default=0)
-#     # img = models.ImageField()
-#     # serializer exclude ichida turadi, items ichiga tiqmisila
-#     updated_dt = models.DateTimeField(auto_now_add=False, auto_now=True)
-#     create_dt = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)
-#
-#     def save(self, *args, **kwargs):
-#         self.summa = self.product.price * self.quantity
-#         return super(Basket, self).save(*args, **kwargs)
-#
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product_id = models.IntegerField()
+    product_subctg_id = models.IntegerField()
+    quantity = models.IntegerField(default=1)
+    summa = models.IntegerField(blank=True, default=0)
+    updated_dt = models.DateTimeField(auto_now_add=False, auto_now=True)
+    create_dt = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)
+
+    # def save(self, *args, **kwargs):
+    #     self.summa = self.product.price * self.quantity
+    #     return super(Basket, self).save(*args, **kwargs)
+
 #
 # class Prosaved(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)

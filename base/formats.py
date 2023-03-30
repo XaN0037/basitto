@@ -1,8 +1,12 @@
 from collections import OrderedDict
 
-# from sayt.models import ProductImg, TkanImg, Subcategory, ColorImg, Discount, Character, Like
-from src.settings import MEDIA_URL
+from apps.dashboard.models import SubCategory, Karona, Karniz, Kalso, Noj, Baget, DoriAparat
 
+
+# from apps.dashboard.models import SubCategory
+# # from sayt.models import ProductImg, TkanImg, Subcategory, ColorImg, Discount, Character, Like
+# from src.settings import MEDIA_URL
+#
 
 def format(data):
     return OrderedDict([
@@ -12,16 +16,332 @@ def format(data):
         ('mobile', data.mobile),
     ])
 
+
+def subcategory_format(data):
+    return OrderedDict([
+        ('id', data.id),
+        ('content_uz', data.content_uz),
+        ('content_ru', data.content_ru),
+        ('slug', data.slug),
+        ('type', data.type)
+
+    ])
+
+
+def karniz_format(data):
+    return OrderedDict([
+        ('sub_ctg', None if not data.category_id else subcategory_format(data.category)),
+        ('prod_id', data.id),
+        ('status', data.status),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('price', data.price),
+        ('quantity', data.quantity),
+        ('made_in_uz', data.made_in_uz),
+        ('made_in_ru', data.made_in_ru),
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('size', data.size),
+        ('weight', data.weight),
+        ('model_number', data.model_number),
+        ('unit_measurements_uz', data.unit_measurements_uz),
+        ('unit_measurements_ru', data.unit_measurements_ru),
+        ('package_weighte', data.package_weighte),
+        ('package_length_sm', data.package_length_sm),
+        ('package_heigt_sm', data.package_heigt_sm),
+        ('razmer', data.razmer),
+        ('type_uz', data.type_uz),
+        ('type_ru', data.type_ru),
+        ('material', data.material),
+        ('capacity', data.capacity),
+
+        ('shaped_uz', data.shaped_uz),
+        ('shaped_ru', data.shaped_ru),
+        ('method_of_sale_uz', data.method_of_sale_uz),
+        ('method_of_sale_ru', data.method_of_sale_ru),
+        ('diameter_sm', data.diameter_sm),
+        ('length', data.length),
+        ('characteristics_uz', data.characteristics_uz),
+        ('characteristics_ru', data.characteristics_ru),
+
+        ('description_uz', data.description_uz),
+        ('description_ru', data.description_ru),
+
+    ])
+
+
+def kalso_format(data):
+    return OrderedDict([
+        ('id', data.id),
+        ('sub_ctg', None if not data.category else subcategory_format(data.category)),
+        ('status', data.status),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('price', data.price),
+        ('quantity', data.quantity),
+        ('made_in_uz', data.made_in_uz),
+        ('made_in_ru', data.made_in_ru),
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('size', data.size),
+        ('weight', data.weight),
+        ('model_number', data.model_number),
+        ('unit_measurements_uz', data.unit_measurements_uz),
+        ('unit_measurements_ru', data.unit_measurements_ru),
+        ('package_weighte', data.package_weighte),
+        ('package_length_sm', data.package_length_sm),
+        ('package_heigt_sm', data.package_heigt_sm),
+        ('razmer', data.razmer),
+        ('type_uz', data.type_uz),
+        ('type_ru', data.type_ru),
+        ('material', data.material),
+        ('capacity', data.capacity),
+
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('style_uz', data.style_uz),
+        ('style_ru', data.style_ru),
+        ('Type_of_curtain_accessories_uz', data.Type_of_curtain_accessories_uz),
+        ('Type_of_curtain_accessories_ru', data.Type_of_curtain_accessories_ru),
+        ('diameter_sm', data.diameter_sm),
+        ('length', data.length),
+        ('CN_uz', data.CN_uz),
+        ('CN_ru', data.CN_ru),
+        ('description_uz', data.description_uz),
+        ('description_ru', data.description_ru)
+
+    ])
+
+
+def karona_format(data):
+    return OrderedDict([
+        ('sub_ctg', None if not data.category else subcategory_format(data.category)),
+        ('id', data.id),
+
+        ('status', data.status),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('price', data.price),
+        ('quantity', data.quantity),
+        ('made_in_uz', data.made_in_uz),
+        ('made_in_ru', data.made_in_ru),
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('size', data.size),
+        ('weight', data.weight),
+        ('model_number', data.model_number),
+        ('unit_measurements_uz', data.unit_measurements_uz),
+        ('unit_measurements_ru', data.unit_measurements_ru),
+        ('package_weighte', data.package_weighte),
+        ('package_length_sm', data.package_length_sm),
+        ('package_heigt_sm', data.package_heigt_sm),
+        ('razmer', data.razmer),
+        ('type_uz', data.type_uz),
+        ('type_ru', data.type_ru),
+        ('material', data.material),
+        ('capacity', data.capacity),
+
+        ('Method_of_sale_uz', data.Method_of_sale_uz),
+        ('Method_of_sale_ru', data.Method_of_sale_ru),
+        ('diameter_sm', data.diameter_sm),
+        ('length', data.length),
+        ('capacity', data.capacity),
+
+        ('description_uz', data.description_uz),
+        ('description_ru', data.description_ru),
+
+    ])
+
+
+def noj_format(data):
+    print(data, 'lllllllllllllllllllllllllll')
+    return OrderedDict([
+        ('sub_ctg', None if not data.category else subcategory_format(data.category)),
+        ('id', data.id),
+        ('status', data.status),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('price', data.price),
+        ('quantity', data.quantity),
+        ('made_in_uz', data.made_in_uz),
+        ('made_in_ru', data.made_in_ru),
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('size', data.size),
+        ('weight', data.weight),
+        ('model_number', data.model_number),
+        ('unit_measurements_uz', data.unit_measurements_uz),
+        ('unit_measurements_ru', data.unit_measurements_ru),
+        ('package_weighte', data.package_weighte),
+        ('package_length_sm', data.package_length_sm),
+        ('package_heigt_sm', data.package_heigt_sm),
+        ('razmer', data.razmer),
+        ('type_uz', data.type_uz),
+        ('type_ru', data.type_ru),
+        ('material', data.material),
+        ('capacity', data.capacity),
+
+        ('individual_production', data.individual_production),
+        ('certification_uz', data.certification_uz),
+        ('certification_ru', data.certification_ru),
+        ('diameter_sm', data.diameter_sm),
+        ('length', data.length),
+        ('weight', data.weight),
+        ('appropriate_curtain_type', data.appropriate_curtain_type),
+        ('style_uzstyle_uz', data.style_uzstyle_uz),
+        ('style_ru', data.style_ru),
+
+        ('description_uz', data.description_uz),
+        ('description_ru', data.description_ru),
+
+    ])
+
+
+def baget_format(data):
+    return OrderedDict([
+        ('sub_ctg', None if not data.category else subcategory_format(data.category)),
+        ('id', data.id),
+        ('status', data.status),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('price', data.price),
+        ('quantity', data.quantity),
+        ('made_in_uz', data.made_in_uz),
+        ('made_in_ru', data.made_in_ru),
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('size', data.size),
+        ('weight', data.weight),
+        ('model_number', data.model_number),
+        ('unit_measurements_uz', data.unit_measurements_uz),
+        ('unit_measurements_ru', data.unit_measurements_ru),
+        ('package_weighte', data.package_weighte),
+        ('package_length_sm', data.package_length_sm),
+        ('package_heigt_sm', data.package_heigt_sm),
+        ('razmer', data.razmer),
+        ('type_uz', data.type_uz),
+        ('type_ru', data.type_ru),
+        ('material', data.material),
+        ('capacity', data.capacity),
+
+        ('row', data.row),
+        ('length', data.length),
+        ('cornice_width', data.cornice_width),
+        ('baguette_width', data.baguette_width),
+        ('cornice_type_uz', data.cornice_type_uz),
+        ('cornice_type_ru', data.cornice_type_ru),
+        ('suspension_type_uz', data.suspension_type_uz),
+        ('suspension_type_ru', data.suspension_type_ru),
+        ('tip_uz', data.tip_uz),
+        ('tip_ru', data.tip_ru),
+        ('weight', data.weight),
+        ('rotation_uz', data.rotation_uz),
+        ('rotation_ru', data.rotation_ru),
+        ('completely_finished_uz', data.completely_finished_uz),
+        ('completely_finished_ru', data.completely_finished_ru),
+        ('cover_uz', data.cover_uz),
+        ('cover_ru', data.cover_ru),
+
+        ('description_uz', data.description_uz),
+        ('description_ru', data.description_ru),
+
+    ])
+
+
+def dori_format(data):
+    return OrderedDict([
+        ('sub_ctg', None if not data.category else subcategory_format(data.category)),
+        ('id', data.id),
+        ('status', data.status),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('price', data.price),
+        ('quantity', data.quantity),
+        ('made_in_uz', data.made_in_uz),
+        ('made_in_ru', data.made_in_ru),
+        ('material_uz', data.material_uz),
+        ('material_ru', data.material_ru),
+        ('size', data.size),
+        ('weight', data.weight),
+        ('model_number', data.model_number),
+        ('unit_measurements_uz', data.unit_measurements_uz),
+        ('unit_measurements_ru', data.unit_measurements_ru),
+        ('package_weighte', data.package_weighte),
+        ('package_length_sm', data.package_length_sm),
+        ('package_heigt_sm', data.package_heigt_sm),
+        ('razmer', data.razmer),
+        ('type_uz', data.type_uz),
+        ('type_ru', data.type_ru),
+        ('material', data.material),
+        ('capacity', data.capacity),
+
+        ('the_length_of_the_sprayer_uz', data.the_length_of_the_sprayer_uz),
+        ('the_length_of_the_sprayer_ru', data.the_length_of_the_sprayer_ru),
+        ('hose_length_uz', data.hose_length_uz),
+        ('hose_length_ru', data.hose_length_ru),
+        ('total_weight_uz', data.total_weight_uz),
+        ('total_weight_ru', data.total_weight_ru),
+        ('container_capacity_uz', data.container_capacity_uz),
+        ('container_capacity_ru', data.container_capacity_ru),
+        ('work_expenses_uz', data.work_expenses_uz),
+        ('work_expenses_ru', data.work_expenses_ru),
+        ('adjusting_the_sprayer_uz', data.adjusting_the_sprayer_uz),
+        ('adjusting_the_sprayer_ru', data.adjusting_the_sprayer_ru),
+        ('status_uz', data.status_uz),
+        ('status_ru', data.status_ru),
+        ('how_to_transport_the_sprayer_uz', data.how_to_transport_the_sprayer_uz),
+        ('how_to_transport_the_sprayer_ru', data.how_to_transport_the_sprayer_ru),
+        ('spray_type_uz', data.spray_type_uz),
+        ('spray_type_ru', data.spray_type_ru),
+
+        ('description_uz', data.description_uz),
+        ('description_ru', data.description_ru),
+
+    ])
+
+
+def basket_format_get(data):
+    subctg = SubCategory.objects.filter(pk=data.product_subctg_id).first()
+    product = ''
+    if subctg.type == 1:
+        product = karniz_format(Karniz.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 2:
+        product = kalso_format(Kalso.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 3:
+        product = karona_format(Karona.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 4:
+        product = noj_format(Noj.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 5:
+        product = baget_format(Baget.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 6:
+        product = dori_format(DoriAparat.objects.filter(pk=data.product_id).first())
+
+    return OrderedDict([
+        ('basket_id', data.id),
+        ('product-id', product),
+        ('subctg_id', data.product_subctg_id),
+
+        ('user_id', data.user.id),
+        ('soni', data.quantity),
+        ('summa', data.summa),
+        ('updated_dt', data.updated_dt),
+        ('create_dt', data.create_dt),
+    ])
+
+def basket_format(data):
+    return OrderedDict([
+        ('basket_id', data.id),
+        # ('product-id', product),
+        ('subctg_id', data.product_subctg_id),
+
+        ('user_id', data.user.id),
+        ('soni', data.quantity),
+        ('summa', data.summa),
+        ('updated_dt', data.updated_dt),
+        ('create_dt', data.create_dt),
+    ])
 #
-# def category_format(data):
-#     return OrderedDict([
-#         ('id', data.id),
-#         ('content_uz', data.content_uz),
-#         ('content_ru', data.content_ru),
-#         ('slug', data.slug),
-#         ('img', data.img.url),
-#
-#     ])
+
 #
 #
 # def subcategory_format(data):
@@ -118,18 +438,8 @@ def format(data):
 #     ])
 #
 #
-# def basket_format(data):
-#     prod = product_format(data.product)
-#     return OrderedDict([
-#         ('id', data.id),
-#         ('product', prod),
-#         ('user_id', data.user.id),
-#         ('soni', data.quantity),
-#         ('summa', data.summa),
-#         ('updated_dt', data.updated_dt),
-#         ('create_dt', data.create_dt),
-#     ])
-#
+
+
 #
 # def prosaved_format(data):
 #     prod = product_format(data.product)

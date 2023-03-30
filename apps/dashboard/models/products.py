@@ -46,6 +46,8 @@ class Product(models.Model):
     material = models.CharField(max_length=128)
     capacity = models.CharField(max_length=128)
 
+
+
     class Meta:
         abstract = True
 
@@ -142,7 +144,7 @@ class Noj(Product):
     length = models.CharField(max_length=128)
     weight = models.CharField(max_length=128)
     appropriate_curtain_type = models.CharField(max_length=128)
-    style_uz = models.CharField(max_length=128)
+    style_uzstyle_uz = models.CharField(max_length=128)
     style_ru = models.CharField(max_length=128)
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
@@ -177,6 +179,8 @@ class Baget(Product):
     completely_finished_ru = models.CharField(max_length=128)
     cover_uz = models.CharField(max_length=128)
     cover_ru = models.CharField(max_length=128)
+    description_uz = models.CharField(max_length=128)
+    description_ru = models.CharField(max_length=128)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
@@ -212,6 +216,8 @@ class DoriAparat(Product):
     how_to_transport_the_sprayer_ru = models.CharField(max_length=128)
     spray_type_uz = models.CharField(max_length=128)
     spray_type_ru = models.CharField(max_length=128)
+    description_uz = models.CharField(max_length=128)
+    description_ru = models.CharField(max_length=128)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
