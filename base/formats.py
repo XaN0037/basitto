@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-from apps.dashboard.models import SubCategory, Karona, Karniz, Kalso, Noj, Baget, DoriAparat
+from apps.dashboard.models import SubCategory, Karona, Karniz, Kalso, Noj, Baget, DoriAparat, Like
 
 
 # from apps.dashboard.models import SubCategory
@@ -340,7 +340,21 @@ def basket_format(data):
         ('updated_dt', data.updated_dt),
         ('create_dt', data.create_dt),
     ])
-#
+
+
+
+
+
+def comment_format(data):
+    return OrderedDict([
+        ('comment_id', data.id),
+        ('user', None if not data.user else format(data.user)),
+        ('product', data.product.id),
+        ('text', data.text),
+        ('created_at', data.created_at),
+        ('like', Like.objects.select_related('commentary', 'user').filter(commentary_id=data.id, like=True).count()),
+        ('dislike', Like.objects.select_related('commentary', 'user').filter(commentary_id=data.id, dislike=True).count()),
+    ])
 
 #
 #
