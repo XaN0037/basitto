@@ -1,12 +1,9 @@
 from collections import OrderedDict
 
-from apps.dashboard.models import SubCategory, Karona, Karniz, Kalso, Noj, Baget, DoriAparat, Like
+from apps.dashboard.models import *
 
+from src.settings import MEDIA_URL
 
-# from apps.dashboard.models import SubCategory
-# # from sayt.models import ProductImg, TkanImg, Subcategory, ColorImg, Discount, Character, Like
-# from src.settings import MEDIA_URL
-#
 
 def format(data):
     return OrderedDict([
@@ -29,6 +26,12 @@ def subcategory_format(data):
 
 
 def karniz_format(data):
+    images = KarnizImg.objects.select_related('product').filter(product=data)
+    image = []
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
     return OrderedDict([
         ('sub_ctg', None if not data.category_id else subcategory_format(data.category)),
         ('prod_id', data.id),
@@ -67,10 +70,20 @@ def karniz_format(data):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
+        ('images', image),
+
+
     ])
 
 
 def kalso_format(data):
+    images = KalsoImg.objects.select_related('product').filter(product=data)
+    image = []
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
+
     return OrderedDict([
         ('id', data.id),
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
@@ -108,12 +121,24 @@ def kalso_format(data):
         ('CN_uz', data.CN_uz),
         ('CN_ru', data.CN_ru),
         ('description_uz', data.description_uz),
-        ('description_ru', data.description_ru)
+        ('description_ru', data.description_ru),
+
+        ('img', image)
+
 
     ])
 
 
 def karona_format(data):
+    images = KaronaImg.objects.select_related('product').filter(product=data)
+    image = []
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
+
+
+
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('id', data.id),
@@ -149,12 +174,21 @@ def karona_format(data):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
+        ('image', image),
 
     ])
 
 
 def noj_format(data):
-    print(data, 'lllllllllllllllllllllllllll')
+    print('bu data','\n',data)
+    images = NojImg.objects.select_related('product').filter(product=data)
+    image = []
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
+
+
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('id', data.id),
@@ -193,11 +227,18 @@ def noj_format(data):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
+        ('img', image),
 
     ])
 
 
 def baget_format(data):
+    images = BagetImg.objects.select_related('product').filter(product=data)
+    image = []
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('id', data.id),
@@ -244,11 +285,19 @@ def baget_format(data):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
+        ('img', image),
 
     ])
 
 
 def dori_format(data):
+    images = DoritImg.objects.select_related('product').filter(product=data)
+    image = []
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
+
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('id', data.id),
@@ -296,6 +345,7 @@ def dori_format(data):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
+        ('img', image),
 
     ])
 
