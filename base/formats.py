@@ -5,7 +5,7 @@ from apps.dashboard.models import *
 from src.settings import MEDIA_URL
 
 
-def format(data):
+def format(data=None):
     return OrderedDict([
         ('id', data.id),
         ('name', data.name),
@@ -14,7 +14,7 @@ def format(data):
     ])
 
 
-def subcategory_format(data):
+def subcategory_format(data=None):
     return OrderedDict([
         ('id', data.id),
         ('content_uz', data.content_uz),
@@ -25,7 +25,7 @@ def subcategory_format(data):
     ])
 
 
-def karniz_format(data):
+def karniz_format(data=None):
     images = KarnizImg.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
@@ -33,7 +33,7 @@ def karniz_format(data):
             "imgs": "" if not i.img else i.img.url,
         })
     return OrderedDict([
-        ('sub_ctg', None if not data.category_id else subcategory_format(data.category)),
+        ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('prod_id', data.id),
         ('status', data.status),
         ('name_uz', data.name_uz),
@@ -76,7 +76,7 @@ def karniz_format(data):
     ])
 
 
-def kalso_format(data):
+def kalso_format(data=None):
     images = KalsoImg.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
@@ -129,7 +129,7 @@ def kalso_format(data):
     ])
 
 
-def karona_format(data):
+def karona_format(data=None):
     images = KaronaImg.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
@@ -179,7 +179,7 @@ def karona_format(data):
     ])
 
 
-def noj_format(data):
+def noj_format(data=None):
     print('bu data','\n',data)
     images = NojImg.objects.select_related('product').filter(product=data)
     image = []
@@ -232,7 +232,7 @@ def noj_format(data):
     ])
 
 
-def baget_format(data):
+def baget_format(data=None):
     images = BagetImg.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
@@ -290,7 +290,7 @@ def baget_format(data):
     ])
 
 
-def dori_format(data):
+def dori_format(data=None):
     images = DoritImg.objects.select_related('product').filter(product=data)
     image = []
     for i in images:

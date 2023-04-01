@@ -46,8 +46,6 @@ class Product(models.Model):
     material = models.CharField(max_length=128)
     capacity = models.CharField(max_length=128)
 
-
-
     class Meta:
         abstract = True
 

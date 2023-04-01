@@ -14,3 +14,8 @@ def code_decoder(code, decode=False):
 
 def generate_key(cls):
     return binascii.hexlify(os.urandom(cls)).decode()
+
+# text = input('suz kiriting: ')
+#
+# new_text = text[0].upper() + text[1:]
+# print(new_text)

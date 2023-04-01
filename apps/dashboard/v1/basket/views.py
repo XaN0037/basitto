@@ -11,235 +11,305 @@ class BasketView(GenericAPIView):
     authentication_classes = (BearerAuth,)
 
     def post(self, request, *args, **kwargs):
+
+        global formatt
         data =request.data
-        product_id = request.data['product_id']
+        product_id = data['product_id']
+        product_type = data['type']
         user = request.user
 
-        if data['type'] == "karniz":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
+        nott = 'type' if 'type' not in data else 'product_id' if 'product_id' not in data \
+            else 'sub_category_id' if 'sub_category_id' not in data else None
 
+        if nott:
+            return Response({"Error": f"{nott} kiritilmagan"})
+
+        # product_type = product_type[0].upper() + product_type[1:]
+
+        if product_type == "karniz":
+            formatt = karniz_format
             product = Karniz.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                         status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-            basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
-                                                                   product_subctg_id=data["sub_category_id"]).first()
-            if basket:
-                basket.quantity += 1
-                basket.summa = basket.quantity * product.price
-                basket.save()
-                return Response({"success": "edit",
-                                 'basket': basket_format(basket),
-                                 'product': karniz_format(product)})
-
-            root = Basket()
-            root.user = user
-            root.product_id = data['product_id']
-            root.product_subctg_id = data["sub_category_id"]
-            root.summa = product.price
-            root.save()
-
-            return Response({"success": "saved",
-                             'basket': basket_format(root),
-                             'product': karniz_format(product)})
-
-
-
-
-        if data['type'] == "kalso":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
+                                                  status=True).first()
+        elif product_type == "kalso":
+            formatt = kalso_format
             product = Kalso.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                         status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-            basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
-                                                                   product_subctg_id=data["sub_category_id"]).first()
-            if basket:
-                basket.quantity += 1
-                basket.summa = basket.quantity * product.price
-                basket.save()
-                return Response({"success": "edit",
-                                 'basket': basket_format(basket),
-                                 'product': kalso_format(product)})
-
-            root = Basket()
-            root.user = user
-            root.product_id = data['product_id']
-            root.product_subctg_id = data["sub_category_id"]
-            root.summa = product.price
-            root.save()
-
-            return Response({"success": "saved",
-                             'basket': basket_format(root),
-                             'product': noj_format(product)})
-
-
-
-
-        if data['type'] == "karona":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
+                                            status=True).first()
+        elif product_type == "karona":
+            formatt = karona_format
             product = Karona.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                         status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-            basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
-                                                                   product_subctg_id=data["sub_category_id"]).first()
-            if basket:
-                basket.quantity += 1
-                basket.summa = basket.quantity * product.price
-                basket.save()
-                return Response({"success": "edit",
-                                 'basket': basket_format(basket),
-                                 'product': karona_format(product)})
-
-            root = Basket()
-            root.user = user
-            root.product_id = data['product_id']
-            root.product_subctg_id = data["sub_category_id"]
-            root.summa = product.price
-            root.save()
-
-            return Response({"success": "saved",
-                             'basket': basket_format(root),
-                             'product': karona_format(product)})
-
-
-
-
-
-        if data['type'] == "noj":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
-            product = Noj.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'], status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-            basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,product_subctg_id=data["sub_category_id"]).first()
-            if basket:
-                basket.quantity += 1
-                basket.summa = basket.quantity * product.price
-                basket.save()
-                return Response({"success":"edit",
-                                'basket': basket_format(basket),
-                                 'product': noj_format(product)})
-
-            root = Basket()
-            root.user = user
-            root.product_id = data['product_id']
-            root.product_subctg_id = data["sub_category_id"]
-            root.summa = product.price
-            root.save()
-
-
-            return Response({"success":"saved",
-                            'basket': basket_format(root),
-                             'product': noj_format(product)})
-
-
-
-
-
-        if data['type'] == "baget":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
+                                            status=True).first()
+        elif product_type == "noj":
+            formatt = noj_format
+            product = Noj.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                            status=True).first()
+        elif product_type == "baget":
+            formatt = baget_format
             product = Baget.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                         status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-            basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
-                                                                   product_subctg_id=data["sub_category_id"]).first()
-            if basket:
-                basket.quantity += 1
-                basket.summa = basket.quantity * product.price
-                basket.save()
-                return Response({"success": "edit",
-                                 'basket': basket_format(basket),
-                                 'product': baget_format(product)})
-
-            root = Basket()
-            root.user = user
-            root.product_id = data['product_id']
-            root.product_subctg_id = data["sub_category_id"]
-            root.summa = product.price
-            root.save()
-
-            return Response({"success": "saved",
-                             'basket': basket_format(root),
-                             'product': baget_format(product)})
-
-        if data['type'] == "dori_aparat":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
+                                            status=True).first()
+        elif product_type == "dori_aparat":
+            formatt = dori_format
             product = DoriAparat.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
                                             status=True).first()
-            if not product:
-                return Response({
+        else:
+            return Response({"Error": "bunaqa type mavjud emas"})
 
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-            basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
-                                                                   product_subctg_id=data["sub_category_id"]).first()
-            if basket:
-                basket.quantity += 1
-                basket.summa = basket.quantity * product.price
-                basket.save()
-                return Response({"success": "edit",
-                                 'basket': basket_format(basket),
-                                 'product': dori_format(product)})
+        subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        if not subctg:
+            return Response({
+                "Error": "bunaqa sub category mavjud emas"
+            })
 
-            root = Basket()
-            root.user = user
-            root.product_id = data['product_id']
-            root.product_subctg_id = data["sub_category_id"]
-            root.summa = product.price
-            root.save()
+        if not product:
+            return Response({"Error": " bu sub categoryda bunaqa product mavjud emas"})
 
-            return Response({"success": "saved",
-                             'basket': basket_format(root),
-                             'product': karniz_format(product)})
-        return Response({
-            "Error": "typeni to'gri kirit"
-        })
+        basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
+                                                               product_subctg_id=data["sub_category_id"]).first()
+        if basket:
+            basket.quantity += 1
+            basket.summa = basket.quantity * product.price
+            basket.save()
+            return Response({"success": "edit",
+                             'basket': basket_format(basket),
+                             'product': formatt(product)})
+
+        root = Basket()
+        root.user = user
+        root.product_id = data['product_id']
+        root.product_subctg_id = data["sub_category_id"]
+        root.summa = product.price
+        root.save()
+
+        return Response({"success": "saved",
+                         'basket': basket_format(root),
+                         'product': formatt(product)})
+
+
+
+
+
+
+        # if product_type == "Karniz":
+        #     subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        #     if not subctg:
+        #         return Response({
+        #             "Error": "bunaqa sub category mavjud emas"
+        #         })
+        #
+        #     product = product_type.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+        #                                  status=True).first()
+        #     if not product:
+        #         return Response({
+        #
+        #             "Error": " bu sub categoryda bunaqa product mavjud emas"
+        #         })
+        #     basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
+        #                                                            product_subctg_id=data["sub_category_id"]).first()
+        #     if basket:
+        #         basket.quantity += 1
+        #         basket.summa = basket.quantity * product.price
+        #         basket.save()
+        #         return Response({"success": "edit",
+        #                          'basket': basket_format(basket),
+        #                          'product': karniz_format(product)})
+        #
+        #     root = Basket()
+        #     root.user = user
+        #     root.product_id = data['product_id']
+        #     root.product_subctg_id = data["sub_category_id"]
+        #     root.summa = product.price
+        #     root.save()
+        #
+        #     return Response({"success": "saved",
+        #                      'basket': basket_format(root),
+        #                      'product': karniz_format(product)})
+        #
+        # if data['type'] == "kalso":
+        #     subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        #     if not subctg:
+        #         return Response({
+        #             "Error": "bunaqa sub category mavjud emas"
+        #         })
+        #
+        #     product = Kalso.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+        #                                  status=True).first()
+        #     if not product:
+        #         return Response({
+        #
+        #             "Error": " bu sub categoryda bunaqa product mavjud emas"
+        #         })
+        #     basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
+        #                                                            product_subctg_id=data["sub_category_id"]).first()
+        #     if basket:
+        #         basket.quantity += 1
+        #         basket.summa = basket.quantity * product.price
+        #         basket.save()
+        #         return Response({"success": "edit",
+        #                          'basket': basket_format(basket),
+        #                          'product': kalso_format(product)})
+        #
+        #     root = Basket()
+        #     root.user = user
+        #     root.product_id = data['product_id']
+        #     root.product_subctg_id = data["sub_category_id"]
+        #     root.summa = product.price
+        #     root.save()
+        #
+        #     return Response({"success": "saved",
+        #                      'basket': basket_format(root),
+        #                      'product': noj_format(product)})
+        #
+        #
+        #
+        #
+        # if data['type'] == "karona":
+        #     subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        #     if not subctg:
+        #         return Response({
+        #             "Error": "bunaqa sub category mavjud emas"
+        #         })
+        #
+        #     product = Karona.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+        #                                  status=True).first()
+        #     if not product:
+        #         return Response({
+        #
+        #             "Error": " bu sub categoryda bunaqa product mavjud emas"
+        #         })
+        #     basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
+        #                                                            product_subctg_id=data["sub_category_id"]).first()
+        #     if basket:
+        #         basket.quantity += 1
+        #         basket.summa = basket.quantity * product.price
+        #         basket.save()
+        #         return Response({"success": "edit",
+        #                          'basket': basket_format(basket),
+        #                          'product': karona_format(product)})
+        #
+        #     root = Basket()
+        #     root.user = user
+        #     root.product_id = data['product_id']
+        #     root.product_subctg_id = data["sub_category_id"]
+        #     root.summa = product.price
+        #     root.save()
+        #
+        #     return Response({"success": "saved",
+        #                      'basket': basket_format(root),
+        #                      'product': karona_format(product)})
+        #
+        #
+        #
+        #
+        #
+        # if data['type'] == "noj":
+        #     subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        #     if not subctg:
+        #         return Response({
+        #             "Error": "bunaqa sub category mavjud emas"
+        #         })
+        #
+        #     product = Noj.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'], status=True).first()
+        #     if not product:
+        #         return Response({
+        #
+        #             "Error": " bu sub categoryda bunaqa product mavjud emas"
+        #         })
+        #     basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,product_subctg_id=data["sub_category_id"]).first()
+        #     if basket:
+        #         basket.quantity += 1
+        #         basket.summa = basket.quantity * product.price
+        #         basket.save()
+        #         return Response({"success":"edit",
+        #                         'basket': basket_format(basket),
+        #                          'product': noj_format(product)})
+        #
+        #     root = Basket()
+        #     root.user = user
+        #     root.product_id = data['product_id']
+        #     root.product_subctg_id = data["sub_category_id"]
+        #     root.summa = product.price
+        #     root.save()
+        #
+        #
+        #     return Response({"success":"saved",
+        #                     'basket': basket_format(root),
+        #                      'product': noj_format(product)})
+        #
+        #
+        #
+        #
+        #
+        # if data['type'] == "baget":
+        #     subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        #     if not subctg:
+        #         return Response({
+        #             "Error": "bunaqa sub category mavjud emas"
+        #         })
+        #
+        #     product = Baget.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+        #                                  status=True).first()
+        #     if not product:
+        #         return Response({
+        #
+        #             "Error": " bu sub categoryda bunaqa product mavjud emas"
+        #         })
+        #     basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
+        #                                                            product_subctg_id=data["sub_category_id"]).first()
+        #     if basket:
+        #         basket.quantity += 1
+        #         basket.summa = basket.quantity * product.price
+        #         basket.save()
+        #         return Response({"success": "edit",
+        #                          'basket': basket_format(basket),
+        #                          'product': baget_format(product)})
+        #
+        #     root = Basket()
+        #     root.user = user
+        #     root.product_id = data['product_id']
+        #     root.product_subctg_id = data["sub_category_id"]
+        #     root.summa = product.price
+        #     root.save()
+        #
+        #     return Response({"success": "saved",
+        #                      'basket': basket_format(root),
+        #                      'product': baget_format(product)})
+        #
+        # if data['type'] == "dori_aparat":
+        #     subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        #     if not subctg:
+        #         return Response({
+        #             "Error": "bunaqa sub category mavjud emas"
+        #         })
+        #
+        #     product = DoriAparat.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+        #                                     status=True).first()
+        #     if not product:
+        #         return Response({
+        #
+        #             "Error": " bu sub categoryda bunaqa product mavjud emas"
+        #         })
+        #     basket = Basket.objects.filter(user_id=user.id).filter(product_id=product_id,
+        #                                                            product_subctg_id=data["sub_category_id"]).first()
+        #     if basket:
+        #         basket.quantity += 1
+        #         basket.summa = basket.quantity * product.price
+        #         basket.save()
+        #         return Response({"success": "edit",
+        #                          'basket': basket_format(basket),
+        #                          'product': dori_format(product)})
+        #
+        #     root = Basket()
+        #     root.user = user
+        #     root.product_id = data['product_id']
+        #     root.product_subctg_id = data["sub_category_id"]
+        #     root.summa = product.price
+        #     root.save()
+        #
+        #     return Response({"success": "saved",
+        #                      'basket': basket_format(root),
+        #                      'product': karniz_format(product)})
+        # return Response({
+        #     "Error": "typeni to'gri kirit"
+        # })
 
 
     def get(self, request, *args, **kwargs):
@@ -331,21 +401,6 @@ class BasketView(GenericAPIView):
             return Response({
                 "Success": "Bron qilingan tarif o'chirib tashlandi"
             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
