@@ -33,8 +33,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return str(self.text)[:30]
-#
-#
+
+
+
 class Like(models.Model):
     commentary = models.ForeignKey(Comment, related_name="like", on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
@@ -42,27 +43,49 @@ class Like(models.Model):
     user = models.ForeignKey(User, related_name='requirement_comment_likes', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-#
-#
-# class Banner(models.Model):
-#     name = models.CharField(max_length=128)
-#     image = models.ImageField(upload_to='banner')
-#
+
+
+
+
+class Banner(models.Model):
+    name = models.CharField(max_length=128)
+    image = models.ImageField(upload_to='banner')
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Discount(models.Model):
+    karniz = models.ForeignKey(Karniz, blank=True, null=True, on_delete=models.CASCADE)
+    kalso = models.ForeignKey(Kalso, blank=True, null=True, on_delete=models.CASCADE)
+    baget = models.ForeignKey(Baget, blank=True, null=True, on_delete=models.CASCADE)
+    karona = models.ForeignKey(Karona, blank=True, null=True, on_delete=models.CASCADE)
+    noj = models.ForeignKey(Noj, blank=True, null=True, on_delete=models.CASCADE)
+    dori_apparat = models.ForeignKey(DoriAparat, blank=True, null=True, on_delete=models.CASCADE)
+
+    procent = models.IntegerField(blank=True, null=True, default=0)
+    price = models.IntegerField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        s = ''
+        if self.karona:
+            s += "self.karona.name , "
+        if self.kalso:
+            s += "self.kalso.name , "
+        if self.baget:
+            s += "self.baget.name, "
+        if self.karona:
+            s += "self.karona.name, "
+        if self.noj:
+            s += "self.noj.name ,"
+        if self.dori_apparat:
+            s += "self.dori_apparat.name ,"
+        return f"{s}"
+
 #     def __str__(self):
-#         return f"{self.name}"
-#
-#
-# class Discount(models.Model):
-#     product_id = models.IntegerField()
-#     product_subctg_id = models.IntegerField()
-#
-#     procent = models.IntegerField(blank=True, null=True, default=0)
-#     price = models.IntegerField()
-#     start_date = models.DateTimeField()
-#     end_date = models.DateTimeField()
-#
-# #     def __str__(self):
-# #         return f"{self.product.name}"
+#         return f"{self.product.name}"
 # #
 #     def save(self, *args, **kwargs):
 #         product =''
@@ -85,22 +108,22 @@ class Like(models.Model):
 #         self.procent = (self.price / self.product.price) * 100
 #         print("\n", self.procent, '\n')
 #         return super(Discount, self).save(*args, **kwargs)
-#
-#     def __str__(self):
-#         product = ''
-#         ctg = SubCategory.objects.filter(pk=self.product_subctg_id).first()
-#         print('\n','bu ctg',ctg,'\n')
-#         if ctg.type == 1:
-#             product = Karniz.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 2:
-#             product = Kalso.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 3:
-#             product = Karona.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 4:
-#             product = Noj.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 5:
-#             product = Baget.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 6:
-#             product = DoriAparat.objects.filter(pk=self.product_id).first()
-#
-#         return f"{product.name_uz}"
+# #
+# #     def __str__(self):
+# #         product = ''
+# #         ctg = SubCategory.objects.filter(pk=self.product_subctg_id).first()
+# #         print('\n','bu ctg',ctg,'\n')
+# #         if ctg.type == 1:
+# #             product = Karniz.objects.filter(pk=self.product_id).first()
+# #         elif ctg.type == 2:
+# #             product = Kalso.objects.filter(pk=self.product_id).first()
+# #         elif ctg.type == 3:
+# #             product = Karona.objects.filter(pk=self.product_id).first()
+# #         elif ctg.type == 4:
+# #             product = Noj.objects.filter(pk=self.product_id).first()
+# #         elif ctg.type == 5:
+# #             product = Baget.objects.filter(pk=self.product_id).first()
+# #         elif ctg.type == 6:
+# #             product = DoriAparat.objects.filter(pk=self.product_id).first()
+# #
+# #         return f"{product.name_uz}"

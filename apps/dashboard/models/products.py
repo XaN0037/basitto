@@ -148,7 +148,7 @@ class Noj(Product):
     description_ru = models.CharField(max_length=128)
 
     def __str__(self):
-        return f"{self.name_uz} | {self.name_ru}"
+        return {self.name_uz , self.name_ru}
 
 
 class NojImg(models.Model):
