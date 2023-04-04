@@ -6,169 +6,107 @@ from base.formats import *
 
 class ProductView(ListCreateAPIView):
 
-    def get(self, requests, pk=None, ctg=None, *args, **kwargs):
-        data = requests.data
+    def get(self, request, *args, **kwargs):
+        global formatt
+        data = request.data
+        product_type = data['type']
 
-        if data['type'] == "karniz":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
+        # nott = 'type' if 'type' not in data else 'product_id' if 'product_id' not in data \
+        #     else 'sub_category_id' if 'sub_category_id' not in data else None
+        #
+        # if nott:
+        #     return Response({"Error": f"{nott} kiritilmagan"})
 
-            product = Karniz.objects.filter(pk=pk, category_id=subctg.id, status=True).first()
-            if not product:
-                return Response({
+        if product_type == "karniz":
+            formatt = karniz_format
+            product = Karniz.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                            status=True).first()
 
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
+        elif product_type == "kalso":
+            formatt = kalso_format
+            if data['product_id'] == 'all':
+                l = Kalso.objects.filter(category_id=data['sub_category_id'],
+                                         status=True)
+                product = []
+                for i in l:
+                    product.append(formatt(i))
+                return Response(product)
 
+            else:
+                product = Kalso.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                               status=True).first()
+
+
+
+
+        elif product_type == "karona":
+            formatt = karona_format
+
+            if data['product_id'] == 'all':
+                l = Karona.objects.filter(category_id=data['sub_category_id'],
+                                          status=True)
+                product = []
+                for i in l:
+                    product.append(formatt(i))
+                return Response(product)
+
+            else:
+                product = Karona.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                                status=True).first()
+
+        elif product_type == "noj":
+            formatt = noj_format
+
+            if data['product_id'] == 'all':
+                l = Noj.objects.filter(category_id=data['sub_category_id'],
+                                       status=True)
+                product = []
+                for i in l:
+                    product.append(formatt(i))
+                return Response(product)
+
+            else:
+                product = Noj.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                             status=True).first()
+
+
+        elif product_type == "baget":
+            formatt = baget_format
+            if data['product_id'] == 'all':
+                l = Baget.objects.filter(category_id=data['sub_category_id'],
+                                         status=True)
+                product = []
+                for i in l:
+                    product.append(formatt(i))
+                return Response(product)
+
+            else:
+                product = Baget.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                               status=True).first()
+
+        elif product_type == "dori_aparat":
+            formatt = dori_format
+            if data['product_id'] == 'all':
+                l = DoriAparat.objects.filter(category_id=data['sub_category_id'],
+                                              status=True)
+                product = []
+                for i in l:
+                    product.append(formatt(i))
+                return Response(product)
+
+            else:
+                product = DoriAparat.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
+                                                    status=True).first()
+        else:
+            return Response({"Error": "bunaqa type mavjud emas"})
+
+        subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
+        if not subctg:
             return Response({
-                "prod": karniz_format(product)
+                "Error": "bunaqa sub category mavjud emas"
             })
 
-        if data['type'] == "kalso":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
+        if not product:
+            return Response({"Error": " bu sub categoryda bunaqa product mavjud emas"})
 
-            product = Kalso.objects.filter(pk=pk, category_id=subctg.id, status=True).first()
-            if not product:
-                return Response({
-                    'ctg':subcategory_format(subctg),
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-
-            return Response({
-                "prod": kalso_format(product)
-            })
-
-        if data['type'] == "karona":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
-            product = Karona.objects.filter(pk=pk, category_id=subctg.id, status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-
-            return Response({
-                "prod": karona_format(product)
-            })
-
-
-
-
-
-        if data['type'] == "noj":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
-            product = Noj.objects.filter(pk=pk, category_id=subctg.id, status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": " bu sub categoryda bunaqa product mavjud emas"
-                })
-
-            return Response({
-                "prod": noj_format(product)
-            })
-
-        if data['type'] == "baget":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
-            product = Baget.objects.filter(pk=pk, category_id=subctg.id, status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": "bunaqa product mavjud emas"
-                })
-
-            return Response({
-                "prod": baget_format(product)
-            })
-
-        if data['type'] == "dori_aparat":
-            subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-            if not subctg:
-                return Response({
-                    "Error": "bunaqa sub category mavjud emas"
-                })
-
-            product = DoriAparat.objects.filter(pk=pk, category_id=subctg.id, status=True).first()
-            if not product:
-                return Response({
-
-                    "Error": "bunaqa product mavjud emas"
-                })
-
-
-            return Response({
-                "prod": dori_format(product)
-            })
-
-        return Response({
-            "Error": "typeni to'gri kirit"
-        })
-
-
-
-
-
-
-
-    # def post(self, requests, pk=None,*args, **kwargs):
-    #     data = requests.data
-    #     product = Karniz.objects.filter(pk=pk).filter(category_id=SubCategory.objects.filter(pk=data['sub_category_id'])).first()
-    #     return Response({
-    #             "Error": "bunaqa sub category mavjud emas"
-    #         })
-    #
-
-    # if  pk:
-    #     try:
-    #         product = Product.objects.filter(pk=pk).first()
-    #         result = karniz_format(product)
-    #     except:
-    #         result = "bu subcategory da maxsulot topilmadi"
-    #
-    # else:
-    #     result = []
-    #     for i in Product.objects.all():
-    #         result.append(karniz_format(i))
-    #
-    # return Response(result)
-
-    # def put(self, requests, pk, *args, **kwargs):
-    #
-    #     data = requests.data
-    #     new = Product.objects.get(pk=pk)
-    #     serializer = self.get_serializer(data=data, instance=new, partial=True)
-    #     serializer.is_valid(raise_exception=True)
-    #     root = serializer.save()
-    #     return Response(product_format(root))
-    #
-    # def delete(self, requests, pk, *args, **kwargs):
-    #     prod= Product.objects.filter(pk=pk).first()
-    #     if prod:
-    #         # prod.delete()
-    #         result = "product o'chirildi"
-    #     else:
-    #         result = "product topilmadi"
-    #     return Response ({"reultat":result})
+        return Response(formatt(product))

@@ -57,6 +57,7 @@ class Karniz(Product):
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, limit_choices_to={
         "type": 1
     })
+    discount_price = models.IntegerField(null=True, blank=True)
     shaped_uz = models.CharField(max_length=128)
     shaped_ru = models.CharField(max_length=128)
     method_of_sale_uz = models.CharField(max_length=128)
@@ -67,6 +68,13 @@ class Karniz(Product):
     characteristics_ru = models.CharField(max_length=128)
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
+
+    def save(self, *args, **kwargs):
+        if self.discount_price:
+            self.status = False
+        else:
+            self.status = True
+        return super(Karniz, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
@@ -84,6 +92,7 @@ class Kalso(Product):
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, limit_choices_to={
         "type": 2
     })
+    discount_price = models.IntegerField(null=True, blank=True)
 
     material_uz = models.CharField(max_length=128)
     material_ru = models.CharField(max_length=128)
@@ -97,6 +106,13 @@ class Kalso(Product):
     CN_ru = models.CharField(max_length=128)
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
+
+
+    def save(self, *args, **kwargs):
+        if self.discount_price:
+            self.status = False
+        else:self.status = True
+        return super(Kalso, self).save(*args,**kwargs)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
@@ -114,6 +130,7 @@ class Karona(Product):
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, limit_choices_to={
         "type": 3
     })
+    discount_price = models.IntegerField(null=True, blank=True)
     Method_of_sale_uz = models.CharField(max_length=128)
     Method_of_sale_ru = models.CharField(max_length=128)
     diameter_sm = models.CharField(max_length=128)
@@ -121,6 +138,13 @@ class Karona(Product):
     capacity = models.CharField(max_length=128)
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
+
+    def save(self, *args, **kwargs):
+        if self.discount_price:
+            self.status = False
+        else:
+            self.status = True
+        return super(Karona, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
@@ -135,6 +159,7 @@ class Noj(Product):
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, limit_choices_to={
         "type": 4
     })
+    discount_price = models.IntegerField(null=True, blank=True)
     individual_production = models.CharField(max_length=128)
     certification_uz = models.CharField(max_length=128)
     certification_ru = models.CharField(max_length=128)
@@ -147,8 +172,18 @@ class Noj(Product):
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
 
+    def save(self, *args, **kwargs):
+        if self.discount_price:
+            self.status = False
+        else:
+            self.status = True
+        return super(Noj, self).save(*args, **kwargs)
+
     def __str__(self):
-        return {self.name_uz , self.name_ru}
+        return f"{self.name_uz} | {self.name_ru}"
+
+    # def __str__(self):
+    #     return {self.name_uz, self.name_ru}
 
 
 class NojImg(models.Model):
@@ -160,6 +195,7 @@ class Baget(Product):
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, limit_choices_to={
         "type": 5
     })
+    discount_price = models.IntegerField(null=True, blank=True)
     row = models.CharField(max_length=128)
     length = models.CharField(max_length=128)
     cornice_width = models.CharField(max_length=128)
@@ -180,6 +216,13 @@ class Baget(Product):
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
 
+    def save(self, *args, **kwargs):
+        if self.discount_price:
+            self.status = False
+        else:
+            self.status = True
+        return super(Baget, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
 
@@ -196,6 +239,7 @@ class DoriAparat(Product):
     category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, limit_choices_to={
         "type": 6
     })
+    discount_price = models.IntegerField(null=True, blank=True)
     the_length_of_the_sprayer_uz = models.CharField(max_length=128)
     the_length_of_the_sprayer_ru = models.CharField(max_length=128)
     hose_length_uz = models.CharField(max_length=128)
@@ -216,6 +260,13 @@ class DoriAparat(Product):
     spray_type_ru = models.CharField(max_length=128)
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
+
+    def save(self, *args, **kwargs):
+        if self.discount_price:
+            self.status = False
+        else:
+            self.status = True
+        return super(DoriAparat, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"

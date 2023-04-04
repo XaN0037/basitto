@@ -54,67 +54,44 @@ class Banner(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-
-class Discount(models.Model):
-    karniz = models.ForeignKey(Karniz, blank=True, null=True, on_delete=models.CASCADE)
-    kalso = models.ForeignKey(Kalso, blank=True, null=True, on_delete=models.CASCADE)
-    baget = models.ForeignKey(Baget, blank=True, null=True, on_delete=models.CASCADE)
-    karona = models.ForeignKey(Karona, blank=True, null=True, on_delete=models.CASCADE)
-    noj = models.ForeignKey(Noj, blank=True, null=True, on_delete=models.CASCADE)
-    dori_apparat = models.ForeignKey(DoriAparat, blank=True, null=True, on_delete=models.CASCADE)
-
-    procent = models.IntegerField(blank=True, null=True, default=0)
-    price = models.IntegerField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-
-    def __str__(self):
-        s = ''
-        if self.karona:
-            s += "self.karona.name , "
-        if self.kalso:
-            s += "self.kalso.name , "
-        if self.baget:
-            s += "self.baget.name, "
-        if self.karona:
-            s += "self.karona.name, "
-        if self.noj:
-            s += "self.noj.name ,"
-        if self.dori_apparat:
-            s += "self.dori_apparat.name ,"
-        return f"{s}"
-
+#
+# class Discount(models.Model):
+#     karniz = models.ForeignKey(Karniz, blank=True, null=True, on_delete=models.CASCADE)
+#     kalso = models.ForeignKey(Kalso, blank=True, null=True, on_delete=models.CASCADE)
+#     baget = models.ForeignKey(Baget, blank=True, null=True, on_delete=models.CASCADE)
+#     karona = models.ForeignKey(Karona, blank=True, null=True, on_delete=models.CASCADE)
+#     noj = models.ForeignKey(Noj, blank=True, null=True, on_delete=models.CASCADE)
+#     dori_apparat = models.ForeignKey(DoriAparat, blank=True, null=True, on_delete=models.CASCADE)
+#
+#     procent = models.IntegerField(blank=True, null=True, default=0)
+#     price = models.IntegerField()
+#     start_date = models.DateTimeField()
+#     end_date = models.DateTimeField()
+#
 #     def __str__(self):
-#         return f"{self.product.name}"
-# #
-#     def save(self, *args, **kwargs):
-#         product =''
-#         ctg = SubCategory.objects.filter(pk=self.product_subctg_id).first()
-#         if ctg.type == 1:
-#             product =Karniz.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 2:
-#             product = Kalso.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 3:
-#             product = Karona.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 4:
-#             product = Noj.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 5:
-#             product = Baget.objects.filter(pk=self.product_id).first()
-#         elif ctg.type == 6:
-#             product = DoriAparat.objects.filter(pk=self.product_id).first()
-#         product.status = False
+#         s = ''
+#         if self.karona:
+#             s += "self.karona.name , "
+#         if self.kalso:
+#             s += "self.kalso.name , "
+#         if self.baget:
+#             s += "self.baget.name, "
+#         if self.karona:
+#             s += "self.karona.name, "
+#         if self.noj:
+#             s += "self.noj.name ,"
+#         if self.dori_apparat:
+#             s += "self.dori_apparat.name ,"
+#         return f"{s}"
 #
-#
-#         self.procent = (self.price / self.product.price) * 100
-#         print("\n", self.procent, '\n')
-#         return super(Discount, self).save(*args, **kwargs)
-# #
 # #     def __str__(self):
-# #         product = ''
+# #         return f"{self.product.name}"
+# # #
+# #     def save(self, *args, **kwargs):
+# #         product =''
 # #         ctg = SubCategory.objects.filter(pk=self.product_subctg_id).first()
-# #         print('\n','bu ctg',ctg,'\n')
 # #         if ctg.type == 1:
-# #             product = Karniz.objects.filter(pk=self.product_id).first()
+# #             product =Karniz.objects.filter(pk=self.product_id).first()
 # #         elif ctg.type == 2:
 # #             product = Kalso.objects.filter(pk=self.product_id).first()
 # #         elif ctg.type == 3:
@@ -125,5 +102,28 @@ class Discount(models.Model):
 # #             product = Baget.objects.filter(pk=self.product_id).first()
 # #         elif ctg.type == 6:
 # #             product = DoriAparat.objects.filter(pk=self.product_id).first()
+# #         product.status = False
 # #
-# #         return f"{product.name_uz}"
+# #
+# #         self.procent = (self.price / self.product.price) * 100
+# #         print("\n", self.procent, '\n')
+# #         return super(Discount, self).save(*args, **kwargs)
+# # #
+# # #     def __str__(self):
+# # #         product = ''
+# # #         ctg = SubCategory.objects.filter(pk=self.product_subctg_id).first()
+# # #         print('\n','bu ctg',ctg,'\n')
+# # #         if ctg.type == 1:
+# # #             product = Karniz.objects.filter(pk=self.product_id).first()
+# # #         elif ctg.type == 2:
+# # #             product = Kalso.objects.filter(pk=self.product_id).first()
+# # #         elif ctg.type == 3:
+# # #             product = Karona.objects.filter(pk=self.product_id).first()
+# # #         elif ctg.type == 4:
+# # #             product = Noj.objects.filter(pk=self.product_id).first()
+# # #         elif ctg.type == 5:
+# # #             product = Baget.objects.filter(pk=self.product_id).first()
+# # #         elif ctg.type == 6:
+# # #             product = DoriAparat.objects.filter(pk=self.product_id).first()
+# # #
+# # #         return f"{product.name_uz}"

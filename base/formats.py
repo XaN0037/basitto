@@ -39,6 +39,8 @@ def karniz_format(data=None):
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('discount_price', data.discount_price),
+
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
         ('made_in_ru', data.made_in_ru),
@@ -91,6 +93,7 @@ def kalso_format(data=None):
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('discount_price', data.discount_price),
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
         ('made_in_ru', data.made_in_ru),
@@ -147,6 +150,7 @@ def karona_format(data=None):
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('discount_price', data.discount_price),
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
         ('made_in_ru', data.made_in_ru),
@@ -180,7 +184,7 @@ def karona_format(data=None):
 
 
 def noj_format(data=None):
-    print('bu data','\n',data)
+    # print('bu data','\n',data)
     images = NojImg.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
@@ -197,6 +201,7 @@ def noj_format(data=None):
         ('name_ru', data.name_ru),
         ('price', data.price),
         ('quantity', data.quantity),
+        ('discount_price', data.discount_price),
         ('made_in_uz', data.made_in_uz),
         ('made_in_ru', data.made_in_ru),
         ('material_uz', data.material_uz),
@@ -246,6 +251,7 @@ def baget_format(data=None):
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('discount_price', data.discount_price),
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
         ('made_in_ru', data.made_in_ru),
@@ -306,6 +312,7 @@ def dori_format(data=None):
         ('name_ru', data.name_ru),
         ('price', data.price),
         ('quantity', data.quantity),
+        ('discount_price', data.discount_price),
         ('made_in_uz', data.made_in_uz),
         ('made_in_ru', data.made_in_ru),
         ('material_uz', data.material_uz),
