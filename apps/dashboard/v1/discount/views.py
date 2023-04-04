@@ -20,15 +20,15 @@ class DiscountView(GenericAPIView):
         if product_type == "karniz":
             formatt = karniz_format
             product = Karniz.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                            status=True).first()
+                                            status=False).first()
         elif product_type == "kalso":
             formatt = kalso_format
             product = Kalso.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                           status=True).first()
+                                           status=False).first()
         elif product_type == "karona":
             formatt = karona_format
             product = Karona.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                            status=True).first()
+                                            status=False).first()
         elif product_type == "noj":
             formatt = noj_format
             product = Noj.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
@@ -36,11 +36,11 @@ class DiscountView(GenericAPIView):
         elif product_type == "baget":
             formatt = baget_format
             product = Baget.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                           status=True).first()
+                                           status=False).first()
         elif product_type == "dori_aparat":
             formatt = dori_format
             product = DoriAparat.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                                status=True).first()
+                                                status=False).first()
         else:
             return Response({"Error": "bunaqa type mavjud emas"})
 

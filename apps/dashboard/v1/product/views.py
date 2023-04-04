@@ -8,14 +8,51 @@ class ProductView(ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         global formatt
+        formatt = karniz_format
         data = request.data
         product_type = data['type']
+        product_id = data['product_id']
 
-        # nott = 'type' if 'type' not in data else 'product_id' if 'product_id' not in data \
-        #     else 'sub_category_id' if 'sub_category_id' not in data else None
-        #
-        # if nott:
-        #     return Response({"Error": f"{nott} kiritilmagan"})
+        nott = 'type' if 'type' not in data else None if 'product_id' not in data \
+            else 'sub_category_id' if 'sub_category_id' not in data else None
+
+        if nott:
+            return Response({"Error": f"{nott} kiritilmagan"})
+
+        if product_type == 'all' and product_id == 'all':
+            l = []
+            try:
+                for i in Karniz.objects.filter(status=True):
+                    l.append(karniz_format(i))
+            except:
+                l = l
+
+            try:
+                for i in Karona.objects.afilter(status=True):
+                    l.append(karona_format(i))
+            except:
+                l = l
+            try:
+                for i in Kalso.objects.filter(status=True):
+                    l.append(kalso_format(i))
+            except:
+                l = l
+            try:
+                for i in Noj.objects.filter(status=True):
+                    l.append(noj_format(i))
+            except:
+                l = l
+            try:
+                for i in Baget.objects.filter(status=True):
+                    l.append(baget_format(i))
+            except:
+                l = l
+            try:
+                for i in DoriAparat.objects.filter(status=True):
+                    l.append(dori_format(i))
+            except:
+                l = l
+            return Response({"data": l})
 
         if product_type == "karniz":
             formatt = karniz_format
