@@ -7,6 +7,7 @@ from apps.dashboard.v1.category.views import SubCategoryView
 from apps.dashboard.v1.discount.views import DiscountView
 # from apps.dashboard.v1.discount.views import DiscountView
 from apps.dashboard.v1.product.views import ProductView
+from apps.dashboard.v1.comments.views import CommentView, Comments
 
 urlpatterns = [
     path("auth/", AuthView.as_view()),
@@ -24,5 +25,8 @@ urlpatterns = [
 
     path("discount/<int:pk>/", DiscountView.as_view()),
     path("discount/", DiscountView.as_view()),
+
+    path("comments/", CommentView.as_view()),
+    path("comments/<int:pk>/", Comments.as_view()),
 
 ]

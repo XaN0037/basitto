@@ -26,14 +26,13 @@ class Basket(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product_id = models.IntegerField()
-    product_subctg_id = models.IntegerField()
+    subctg_id = models.IntegerField()
     text = models.TextField(max_length=1024)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.text)[:30]
-
 
 
 class Like(models.Model):
@@ -43,8 +42,6 @@ class Like(models.Model):
     user = models.ForeignKey(User, related_name='requirement_comment_likes', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
 
 
 class Banner(models.Model):
@@ -68,6 +65,22 @@ class Banner(models.Model):
 #     start_date = models.DateTimeField()
 #     end_date = models.DateTimeField()
 #
+#     def __str__(self):
+#         s = ''
+#         if self.karona:
+#             s += "self.karona.name , "
+#         if self.kalso:
+#             s += "self.kalso.name , "
+#         if self.baget:
+#             s += "self.baget.name, "
+#         if self.karona:
+#             s += "self.karona.name, "
+#         if self.noj:
+#             s += "self.noj.name ,"
+#         if self.dori_apparat:
+#             s += "self.dori_apparat.name ,"
+#         return f"{s}"
+
 #     def __str__(self):
 #         s = ''
 #         if self.karona:
