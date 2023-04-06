@@ -2,6 +2,7 @@ from django.urls import path
 
 from apps.api.v1.auth.users import UserView
 from apps.api.v1.auth.views import AuthView
+from apps.dashboard.v1.banner.views import BannerViews
 from apps.dashboard.v1.basket.views import BasketView
 from apps.dashboard.v1.category.views import SubCategoryView
 from apps.dashboard.v1.discount.views import DiscountView
@@ -28,5 +29,8 @@ urlpatterns = [
 
     path("comments/", CommentView.as_view()),
     path("comments/<int:pk>/", Comments.as_view()),
+
+    path("banner/<int:pk>/", BannerViews.as_view()),
+    path("banner/", BannerViews.as_view()),
 
 ]
