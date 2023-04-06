@@ -107,12 +107,12 @@ class Kalso(Product):
     description_uz = models.CharField(max_length=128)
     description_ru = models.CharField(max_length=128)
 
-
     def save(self, *args, **kwargs):
         if self.discount_price:
             self.status = False
-        else:self.status = True
-        return super(Kalso, self).save(*args,**kwargs)
+        else:
+            self.status = True
+        return super(Kalso, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name_uz} | {self.name_ru}"
@@ -275,3 +275,5 @@ class DoriAparat(Product):
 class DoritImg(models.Model):
     img = models.ImageField()
     product = models.ForeignKey(DoriAparat, on_delete=models.CASCADE, null=True, related_name='images')
+
+

@@ -1,19 +1,14 @@
-import json
 import random
 import uuid
 import datetime
 
-import requests
-from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from apps.api.v1.auth.serializer import Userserializer
 from apps.api.models import User, OTP
-from apps.api.v1.auth.servise import sms_sender
 from base.helper import code_decoder, generate_key
-from src import settings
 
 
 class AuthView(GenericAPIView):

@@ -413,6 +413,25 @@ def comment_format(data):
         ('dislike', Like.objects.select_related('commentary', 'user').filter(commentary_id=data.id, dislike=True).count()),
     ])
 
+
+
+
+
+
+def banner_format(data):
+    return OrderedDict([
+        ('id',data.id),
+        ('name',data.name),
+        ('image',data.image.url),
+    ])
+
+
+
+
+
+
+
+
 #
 #
 # def subcategory_format(data):
