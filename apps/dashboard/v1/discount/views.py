@@ -1,11 +1,13 @@
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from base.formats import *
+
+
 #
 #
 #
 class DiscountView(GenericAPIView):
-    def get(self,  request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         global formatt
         data = request.data
         product_type = data['type']
@@ -17,7 +19,6 @@ class DiscountView(GenericAPIView):
 
         if nott:
             return Response({"Error": f"{nott} kiritilmagan"})
-
 
         if product_type == 'all' and product_id == 'all':
             l = []
@@ -54,35 +55,10 @@ class DiscountView(GenericAPIView):
                 l = l
             return Response({"data": l})
 
-
-
-
-
-
-
-
-
-
-
         if product_type == "karniz":
             formatt = karniz_format
             product = Karniz.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                            status=True).first()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                            status=False).first()
 
         if product_type == "karniz":
             formatt = karniz_format
@@ -119,6 +95,5 @@ class DiscountView(GenericAPIView):
 
         if not product:
             return Response({"Error": " bu sub categoryda bunaqa product mavjud emas"})
-
 
         return Response(formatt(product))

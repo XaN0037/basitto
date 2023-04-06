@@ -11,6 +11,7 @@ class ProductView(ListCreateAPIView):
         formatt = karniz_format
         data = request.data
         product_type = data['type']
+        sub_ctg_id = data["sub_category_id"]
         product_id = data['product_id']
 
         nott = 'type' if 'type' not in data else None if 'product_id' not in data \
@@ -53,6 +54,10 @@ class ProductView(ListCreateAPIView):
             except:
                 l = l
             return Response({"data": l})
+
+
+
+
 
         if product_type == "karniz":
             formatt = karniz_format
