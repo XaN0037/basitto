@@ -58,7 +58,7 @@ class CommentView(GenericAPIView):
 
             elif params["product_type"] == "dori_aparat":
                 product = DoriAparat.objects.filter(pk=params['product_id']).first()
-
+                print('asdasdad')
             else:
                 return Response({"Error": "bunaqa type mavjud emas"})
 
