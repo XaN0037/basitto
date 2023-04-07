@@ -72,7 +72,7 @@ def karniz_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
-        ('img', [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('img', image),
 
 
     ])
@@ -83,7 +83,7 @@ def kalso_format(data=None):
     image = []
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
 
     return OrderedDict([
@@ -126,7 +126,7 @@ def kalso_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
-        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images])
+        ('img', image)
 
 
     ])
@@ -137,7 +137,7 @@ def karona_format(data=None):
     image = []
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
 
 
@@ -178,7 +178,7 @@ def karona_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('img', image),
 
     ])
 
@@ -232,7 +232,7 @@ def noj_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('img', image),
 
     ])
 
@@ -291,7 +291,7 @@ def baget_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('img', image),
 
     ])
 
@@ -352,7 +352,7 @@ def dori_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('img', image),
 
     ])
 
@@ -422,7 +422,7 @@ def banner_format(data):
     return OrderedDict([
         ('id',data.id),
         ('name',data.name),
-        ('img',data.image.url),
+        ('image',data.image.url),
     ])
 
 
