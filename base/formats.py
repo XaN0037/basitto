@@ -385,21 +385,17 @@ def basket_format_get(data):
         ('create_dt', data.create_dt),
     ])
 
+
 def basket_format(data):
     return OrderedDict([
         ('basket_id', data.id),
-        # ('product-id', product),
         ('subctg_id', data.product_subctg_id),
-
         ('user_id', data.user.id),
         ('soni', data.quantity),
         ('summa', data.summa),
         ('updated_dt', data.updated_dt),
         ('create_dt', data.create_dt),
     ])
-
-
-
 
 
 def comment_format(data):
@@ -414,10 +410,6 @@ def comment_format(data):
     ])
 
 
-
-
-
-
 def banner_format(data):
     return OrderedDict([
         ('id',data.id),
@@ -426,10 +418,13 @@ def banner_format(data):
     ])
 
 
-
-
-
-
+def prosaved_format(data):
+    return OrderedDict([
+        ('prosaved_id', data.id),
+        ('user_id', data.user.id),
+        ('updated_dt', data.updated_dt),
+        ('create_dt', data.create_dt),
+    ])
 
 
 #
@@ -454,61 +449,61 @@ def banner_format(data):
 #     ])
 #
 #
-# def product_format(data):
-#     images = ProductImg.objects.select_related('product').filter(product_id=data.id).values('img')
-#     tkan = TkanImg.objects.select_related('product').filter(product_id=data.id).values('img')
-#     color = ColorImg.objects.select_related('product').filter(product=data)
-#     dis = Discount.objects.select_related('product').filter(product=data).first()
-#     # character = Character.objects.select_related('product').filter(product=data).first()
-#     if dis:
-#         dis = discount_format(dis)
-#     else:
-#         dis = {}
-#     colors = []
-#     for i in color:
-#         colors.append({
-#             "imgs": "" if not i.img else i.img.url,
-#             "name": i.color
-#         })
-#
-#     return OrderedDict([
-#         ('id', data.id),
-#         ('sub_ctg', None if not data.sub_ctg else subcategory_format(data.sub_ctg)),
-#         ('name_uz', data.name_uz),
-#         ('name_ru', data.name_ru),
-#         ('code', data.code),
-#         ('price', data.price),
-#         ('credit', data.credit),
-#         ('bonus', data.bonus),
-#         ('size', data.size),
-#         # ('waranty_uz', data.waranty_uz),
-#         ('waranty', data.waranty),
-#         ('collection_uz', data.collection_uz),
-#         ('collection_ru', data.collection_ru),
-#         ('matras_uz', data.matras_uz),
-#         ('matras_ru', data.matras_ru),
-#         ('xususiyatlari_uz', data.xususiyatlari_uz),
-#         ('xususiyatlari_ru', data.xususiyatlari_ru),
-#         ('qoshimchalari_uz', data.qoshimchalari_uz),
-#         ('qoshimchalari_ru', data.qoshimchalari_ru),
-#         ('balandligi', data.balandligi),
-#         ('mehanizm', data.mehanizm_uz),
-#         ('mehanizm', data.mehanizm_ru),
-#         ('massa', data.massa),
-#         ('maqsad_uz', data.maqsad_uz),
-#         ('maqsad_ru', data.maqsad_ru),
-#         ('razmer', data.razmer),
-#         ('qattiqlik_uz', data.qattiqlik_uz),
-#         ('qattiqlik_ru', data.qattiqlik_ru),
-#         ('brand', data.brand),
-#
-#
-#         ('images', [] if not images else [MEDIA_URL + x['img'] for x in images]),
-#         ('tkans', [] if not tkan else [MEDIA_URL + x['img'] for x in tkan]),
-#         ('color', colors),
-#         ('dis', dis)
-#
-#     ])
+def product_format(data):
+    images = ProductImg.objects.select_related('product').filter(product_id=data.id).values('img')
+    tkan = TkanImg.objects.select_related('product').filter(product_id=data.id).values('img')
+    color = ColorImg.objects.select_related('product').filter(product=data)
+    dis = Discount.objects.select_related('product').filter(product=data).first()
+    # character = Character.objects.select_related('product').filter(product=data).first()
+    if dis:
+        dis = discount_format(dis)
+    else:
+        dis = {}
+    colors = []
+    for i in color:
+        colors.append({
+            "imgs": "" if not i.img else i.img.url,
+            "name": i.color
+        })
+
+    return OrderedDict([
+        ('id', data.id),
+        ('sub_ctg', None if not data.sub_ctg else subcategory_format(data.sub_ctg)),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('code', data.code),
+        ('price', data.price),
+        ('credit', data.credit),
+        ('bonus', data.bonus),
+        ('size', data.size),
+        # ('waranty_uz', data.waranty_uz),
+        ('waranty', data.waranty),
+        ('collection_uz', data.collection_uz),
+        ('collection_ru', data.collection_ru),
+        ('matras_uz', data.matras_uz),
+        ('matras_ru', data.matras_ru),
+        ('xususiyatlari_uz', data.xususiyatlari_uz),
+        ('xususiyatlari_ru', data.xususiyatlari_ru),
+        ('qoshimchalari_uz', data.qoshimchalari_uz),
+        ('qoshimchalari_ru', data.qoshimchalari_ru),
+        ('balandligi', data.balandligi),
+        ('mehanizm', data.mehanizm_uz),
+        ('mehanizm', data.mehanizm_ru),
+        ('massa', data.massa),
+        ('maqsad_uz', data.maqsad_uz),
+        ('maqsad_ru', data.maqsad_ru),
+        ('razmer', data.razmer),
+        ('qattiqlik_uz', data.qattiqlik_uz),
+        ('qattiqlik_ru', data.qattiqlik_ru),
+        ('brand', data.brand),
+
+
+        ('images', [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('tkans', [] if not tkan else [MEDIA_URL + x['img'] for x in tkan]),
+        ('color', colors),
+        ('dis', dis)
+
+    ])
 #
 #
 # def character_format(data):
@@ -527,19 +522,6 @@ def banner_format(data):
 #
 #     ])
 #
-#
-
-
-#
-# def prosaved_format(data):
-#     prod = product_format(data.product)
-#     return OrderedDict([
-#         ('prosaved_id', data.id),
-#         ('product', prod),
-#         ('user_id', data.user.id),
-#         ('updated_dt', data.updated_dt),
-#         ('create_dt', data.create_dt),
-#     ])
 #
 #
 # def colorimg_format(data):

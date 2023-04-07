@@ -6,9 +6,9 @@ from apps.dashboard.v1.banner.views import BannerViews
 from apps.dashboard.v1.basket.views import BasketView
 from apps.dashboard.v1.category.views import SubCategoryView
 from apps.dashboard.v1.discount.views import DiscountView
-# from apps.dashboard.v1.discount.views import DiscountView
 from apps.dashboard.v1.product.views import ProductView
 from apps.dashboard.v1.comments.views import CommentView, Comments
+from apps.dashboard.v1.prosaved.views import ProsavedView
 
 urlpatterns = [
     path("auth/", AuthView.as_view()),
@@ -33,6 +33,7 @@ urlpatterns = [
     path("banner/<int:pk>/", BannerViews.as_view()),
     path("banner/", BannerViews.as_view()),
 
+    path("prosaved/", ProsavedView.as_view()),
+
 ]
 
-#

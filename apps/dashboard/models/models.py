@@ -16,12 +16,13 @@ class Basket(models.Model):
     create_dt = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)
 
 
-# class Prosaved(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     product_id = models.IntegerField()
-#     product_subctg_id = models.IntegerField()
-#     updated_dt = models.DateTimeField(auto_now_add=False, auto_now=True)
-#     create_dt = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)
+class Prosaved(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product_id = models.IntegerField()
+    subctg_id = models.IntegerField()
+    updated_dt = models.DateTimeField(auto_now_add=False, auto_now=True)
+    create_dt = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)
+
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
