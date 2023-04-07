@@ -34,3 +34,5 @@ urlpatterns = [
     path("banner/", BannerViews.as_view()),
 
 ]
+
+#

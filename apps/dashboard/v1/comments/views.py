@@ -3,7 +3,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from apps.api.v1.auth.servise import BearerAuth
 from apps.dashboard.models import *
-from base.formats import comment_format, like_dislike_format
+from base.formats import comment_format
+    # like_dislike_format
 
 
 def saver(model, type, comment):
@@ -85,6 +86,9 @@ class CommentView(GenericAPIView):
             like = Like.objects.get_or_create(commentary_id=params["comment_id"], user_id=user.id)[0]
             saver(like, params['liketype'], comment=comment_id)
             return Response(dl(Like, comment_id))
+
+        return Response({"Error":"Bunaqa method yo'q"})
+
 
 
 class Comments(GenericAPIView):
