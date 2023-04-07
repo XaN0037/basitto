@@ -72,7 +72,7 @@ def karniz_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
-        ('images', image),
+        ('img', image),
 
 
     ])
@@ -83,7 +83,7 @@ def kalso_format(data=None):
     image = []
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
 
     return OrderedDict([
@@ -137,7 +137,7 @@ def karona_format(data=None):
     image = []
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
 
 
@@ -178,7 +178,7 @@ def karona_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('image', image),
+        ('img', image),
 
     ])
 

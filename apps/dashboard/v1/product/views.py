@@ -9,7 +9,7 @@ class ProductView(ListCreateAPIView):
     def get(self, request, *args, **kwargs):
         global formatt
         formatt = karniz_format
-        data = request.data
+        data = request.query_params
         product_type = data['type']
         sub_ctg_id = data["sub_category_id"]
         product_id = data['product_id']
