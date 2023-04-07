@@ -28,10 +28,10 @@ def subcategory_format(data=None):
 def karniz_format(data=None):
     images = KarnizImg.objects.select_related('product').filter(product=data)
     image = []
-    # for i in images:
-    #     image.append({
-    #         "imgs": "" if not i.img else i.img.url,
-    #     })
+    for i in images:
+        image.append({
+            "imgs": "" if not i.img else i.img.url,
+        })
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('prod_id', data.id),
@@ -72,7 +72,7 @@ def karniz_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
-        ('images', [] if not images else [MEDIA_URL + x['img'] for x in images]),
+        ('img', [] if not images else [MEDIA_URL + x['img'] for x in images]),
 
 
     ])
@@ -178,7 +178,7 @@ def karona_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('image', image),
+        ('img', image),
 
     ])
 
@@ -422,7 +422,7 @@ def banner_format(data):
     return OrderedDict([
         ('id',data.id),
         ('name',data.name),
-        ('image',data.image.url),
+        ('img',data.image.url),
     ])
 
 
