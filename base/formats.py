@@ -126,7 +126,7 @@ def kalso_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
-        ('img', image)
+        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images])
 
 
     ])
@@ -178,7 +178,7 @@ def karona_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img', image),
+        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
 
     ])
 
@@ -232,7 +232,7 @@ def noj_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img', image),
+        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
 
     ])
 
@@ -291,7 +291,7 @@ def baget_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img', image),
+        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
 
     ])
 
@@ -352,7 +352,7 @@ def dori_format(data=None):
 
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
-        ('img', image),
+        ('img',  [] if not images else [MEDIA_URL + x['img'] for x in images]),
 
     ])
 
