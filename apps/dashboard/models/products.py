@@ -69,8 +69,8 @@ class Karniz(Product):
     length = models.CharField(max_length=128)
     characteristics_uz = models.CharField(max_length=128)
     characteristics_ru = models.CharField(max_length=128)
-    description_uz = models.CharField(max_length=128)
-    description_ru = models.CharField(max_length=128)
+    description_uz = models.TextField()
+    description_ru = models.TextField()
 
     def save(self, *args, **kwargs):
         if self.discount_price:
@@ -113,8 +113,8 @@ class Kalso(Product):
     length = models.CharField(max_length=128)
     CN_uz = models.CharField(max_length=128)
     CN_ru = models.CharField(max_length=128)
-    description_uz = models.CharField(max_length=128)
-    description_ru = models.CharField(max_length=128)
+    description_uz = models.TextField()
+    description_ru = models.TextField()
 
     def save(self, *args, **kwargs):
         if self.discount_price:
@@ -153,8 +153,8 @@ class Karona(Product):
     diameter_sm = models.CharField(max_length=128)
     length = models.CharField(max_length=128)
     capacity = models.CharField(max_length=128)
-    description_uz = models.CharField(max_length=128)
-    description_ru = models.CharField(max_length=128)
+    description_uz = models.TextField()
+    description_ru = models.TextField()
 
     def save(self, *args, **kwargs):
         if self.discount_price:
@@ -193,8 +193,8 @@ class Noj(Product):
     appropriate_curtain_type = models.CharField(max_length=128)
     style_uzstyle_uz = models.CharField(max_length=128)
     style_ru = models.CharField(max_length=128)
-    description_uz = models.CharField(max_length=128)
-    description_ru = models.CharField(max_length=128)
+    description_uz = models.TextField()
+    description_ru = models.TextField()
 
     def save(self, *args, **kwargs):
         if self.discount_price:
@@ -244,8 +244,8 @@ class Baget(Product):
     completely_finished_ru = models.CharField(max_length=128)
     cover_uz = models.CharField(max_length=128)
     cover_ru = models.CharField(max_length=128)
-    description_uz = models.CharField(max_length=128)
-    description_ru = models.CharField(max_length=128)
+    description_uz = models.TextField()
+    description_ru = models.TextField()
 
     def save(self, *args, **kwargs):
         if self.discount_price:
@@ -296,9 +296,8 @@ class DoriAparat(Product):
     how_to_transport_the_sprayer_ru = models.CharField(max_length=128)
     spray_type_uz = models.CharField(max_length=128)
     spray_type_ru = models.CharField(max_length=128)
-    description_uz = models.CharField(max_length=128)
-    description_ru = models.CharField(max_length=128)
-
+    description_uz = models.TextField()
+    description_ru = models.TextField()
     def save(self, *args, **kwargs):
         if self.discount_price:
             self.status = False
