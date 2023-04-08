@@ -4,7 +4,22 @@ from apps.api.models import User
 from .products import *
 
 
-#
+
+class Contacts(models.Model):
+    phone = models.CharField(max_length=128)
+    phone2 = models.CharField(max_length=128, blank=True, null=True)
+    phone3 = models.CharField(max_length=128, blank=True, null=True)
+    phone4 = models.CharField(max_length=128, blank=True, null=True)
+    phone5 = models.CharField(max_length=128, blank=True, null=True)
+    facebook = models.CharField(max_length=128, blank=True, null=True)
+    instagram = models.CharField(max_length=128, blank=True, null=True)
+    telegram = models.CharField(max_length=128, blank=True, null=True)
+    youtube = models.CharField(max_length=128, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.phone}"
+
+
 #
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

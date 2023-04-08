@@ -5,6 +5,7 @@ from apps.api.v1.auth.views import AuthView
 from apps.dashboard.v1.banner.views import BannerViews
 from apps.dashboard.v1.basket.views import BasketView
 from apps.dashboard.v1.category.views import SubCategoryView
+from apps.dashboard.v1.contacts.views import ContactViews
 from apps.dashboard.v1.discount.views import DiscountView
 from apps.dashboard.v1.pages.views import PagesViews
 from apps.dashboard.v1.product.views import ProductView
@@ -36,6 +37,6 @@ urlpatterns = [
 
     path("prosaved/", ProsavedView.as_view()),
 
+    path("contact/", ContactViews.as_view()),
     path('pages/', PagesViews.as_view()),
 ]
-

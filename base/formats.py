@@ -406,10 +406,10 @@ def basket_format_get(data):
         ('create_dt', data.create_dt),
     ])
 
+
 def basket_format(data):
     return OrderedDict([
         ('basket_id', data.id),
-        # ('product-id', product),
         ('subctg_id', data.product_subctg_id),
 
         ('user_id', data.user.id),
@@ -418,9 +418,6 @@ def basket_format(data):
         ('updated_dt', data.updated_dt),
         ('create_dt', data.create_dt),
     ])
-
-
-
 
 
 def comment_format(data):
@@ -435,10 +432,6 @@ def comment_format(data):
     ])
 
 
-
-
-
-
 def banner_format(data):
     return OrderedDict([
         ('id',data.id),
@@ -447,21 +440,52 @@ def banner_format(data):
     ])
 
 
-
-
+def contact_format(data):
+    return OrderedDict([
+        ("phone", data.phone),
+        ("phone2", data.phone2),
+        ("phone3", data.phone3),
+        ("phone4", data.phone4),
+        ("phone5", data.phone5),
+        ("facebook", data.facebook),
+        ("instagram", data.instagram),
+        ("telegram", data.telegram),
+        ("youtube", data.youtube),
+    ])
 
 
 def prosaved_format(data):
-
     return OrderedDict([
         ('prosaved_id', data.id),
-        ('product', prod),
-        ('user_id', data.user.id),
+        ('user', format(data.user)),
         ('updated_dt', data.updated_dt),
         ('create_dt', data.create_dt),
     ])
 
 
+def prosaved_format_get(data):
+    subctg = SubCategory.objects.filter(pk=data.subctg_id).first()
+    product = ''
+    if subctg.type == 1:
+        product = karniz_format(Karniz.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 2:
+        product = kalso_format(Kalso.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 3:
+        product = karona_format(Karona.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 4:
+        product = noj_format(Noj.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 5:
+        product = baget_format(Baget.objects.filter(pk=data.product_id).first())
+    elif subctg.type == 6:
+        product = dori_format(DoriAparat.objects.filter(pk=data.product_id).first())
+
+    return OrderedDict([
+        ('prosaved_id', data.id),
+        ('product_id', product),
+        ('user', format(data.user)),
+        ('updated_dt', data.updated_dt),
+        ('create_dt', data.create_dt),
+    ])
 
 
 #
@@ -560,18 +584,6 @@ def prosaved_format(data):
 #     ])
 #
 #
-
-
-#
-# def prosaved_format(data):
-#     prod = product_format(data.product)
-#     return OrderedDict([
-#         ('prosaved_id', data.id),
-#         ('product', prod),
-#         ('user_id', data.user.id),
-#         ('updated_dt', data.updated_dt),
-#         ('create_dt', data.create_dt),
-#     ])
 #
 #
 # def colorimg_format(data):

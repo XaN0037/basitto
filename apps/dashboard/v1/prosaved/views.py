@@ -19,7 +19,7 @@ class ProsavedView(GenericAPIView):
         else:
             result = []
             for i in Prosaved.objects.all().filter(user_id=requests.user.id):
-                result.append(prosaved_format(i))
+                result.append(prosaved_format_get(i))
 
         return Response(result)
 

@@ -78,6 +78,7 @@ class DoriAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SubCategory)
+admin.site.register(Contacts)
 
 admin.site.register(Karniz, KarnizAdmin)
 admin.site.register(Kalso, KalsoAdmin)
