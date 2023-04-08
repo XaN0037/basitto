@@ -87,6 +87,12 @@ class KarnizImg(models.Model):
     img = models.ImageField()
     product = models.ForeignKey(Karniz, on_delete=models.CASCADE, null=True, related_name='images')
 
+class KarnizColor(models.Model):
+    name_uz = models.CharField(max_length=128)
+    name_ru = models.CharField(max_length=128)
+    img = models.ImageField()
+    product = models.ForeignKey(Karniz, on_delete=models.CASCADE, null=True, related_name='colorimage')
+
 
 """Kalso"""
 
@@ -126,6 +132,14 @@ class KalsoImg(models.Model):
     product = models.ForeignKey(Kalso, on_delete=models.CASCADE, null=True, related_name='images')
 
 
+class KalsoColor(models.Model):
+    name_uz = models.CharField(max_length=128)
+    name_ru = models.CharField(max_length=128)
+    img = models.ImageField()
+    product = models.ForeignKey(Kalso, on_delete=models.CASCADE, null=True, related_name='colorimages')
+
+
+
 """Karona"""
 
 
@@ -156,6 +170,13 @@ class Karona(Product):
 class KaronaImg(models.Model):
     img = models.ImageField()
     product = models.ForeignKey(Karona, on_delete=models.CASCADE, null=True, related_name='images')
+
+class KaronaColor(models.Model):
+    name_uz = models.CharField(max_length=128)
+    name_ru = models.CharField(max_length=128)
+    img = models.ImageField()
+    product = models.ForeignKey(Karona, on_delete=models.CASCADE, null=True, related_name='colorimages')
+
 
 
 class Noj(Product):
@@ -192,6 +213,13 @@ class Noj(Product):
 class NojImg(models.Model):
     img = models.ImageField()
     product = models.ForeignKey(Noj, on_delete=models.CASCADE, null=True, related_name='images')
+
+class NojColor(models.Model):
+    name_uz = models.CharField(max_length=128)
+    name_ru = models.CharField(max_length=128)
+    img = models.ImageField()
+    product = models.ForeignKey(Noj, on_delete=models.CASCADE, null=True, related_name='colorimages')
+
 
 
 class Baget(Product):
@@ -233,6 +261,13 @@ class Baget(Product):
 class BagetImg(models.Model):
     img = models.ImageField()
     product = models.ForeignKey(Baget, on_delete=models.CASCADE, null=True, related_name='images')
+
+class BagetColor(models.Model):
+    name_uz = models.CharField(max_length=128)
+    name_ru = models.CharField(max_length=128)
+    img = models.ImageField()
+    product = models.ForeignKey(Baget, on_delete=models.CASCADE, null=True, related_name='colorimages')
+
 
 
 """Dori apparat"""
@@ -278,5 +313,12 @@ class DoriAparat(Product):
 class DoritImg(models.Model):
     img = models.ImageField()
     product = models.ForeignKey(DoriAparat, on_delete=models.CASCADE, null=True, related_name='images')
+
+class Dori_Apparat_Color(models.Model):
+    name_uz = models.CharField(max_length=128)
+    name_ru = models.CharField(max_length=128)
+    img = models.ImageField()
+    product = models.ForeignKey(DoriAparat, on_delete=models.CASCADE, null=True, related_name='colorimages')
+
 
 
