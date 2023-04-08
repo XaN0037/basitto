@@ -34,6 +34,16 @@ def subcategory_format(data=None):
     ])
 
 
+
+def colorformat(data):
+    return OrderedDict([
+        ('id', data.id),
+        ('name_uz', data.name_uz),
+        ('name_ru', data.name_ru),
+        ('img', data.img.url),
+    ])
+
+
 def karniz_format(data=None):
     images = KarnizImg.objects.select_related('product').filter(product=data)
     colors = KarnizColor.objects.select_related('product').filter(product=data)
@@ -46,7 +56,7 @@ def karniz_format(data=None):
     color = []
     for i in colors:
         color.append({
-            "color": "" if not i.img else i.img.url,
+            "color": "" if not i.img else colorformat(i),
         })
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
