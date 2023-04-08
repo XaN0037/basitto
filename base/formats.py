@@ -109,6 +109,12 @@ def karniz_format(data=None):
 
 def kalso_format(data=None):
     images = KalsoImg.objects.select_related('product').filter(product=data)
+    colors = KalsoColor.objects.select_related('product').filter(product=data)
+    color = []
+    for i in colors:
+        color.append({
+            "color": "" if not i.img else colorformat(i),
+        })
     image = []
     for i in images:
         image.append({
@@ -157,7 +163,8 @@ def kalso_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
 
-        ('img', image)
+        ('img', image),
+        ('color', color)
 
 
     ])
@@ -165,10 +172,16 @@ def kalso_format(data=None):
 
 def karona_format(data=None):
     images = KaronaImg.objects.select_related('product').filter(product=data)
+    colors = KaronaColor.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
         image.append({
             "img": "" if not i.img else i.img.url,
+        })
+    color = []
+    for i in colors:
+        color.append({
+            "color": "" if not i.img else colorformat(i),
         })
 
 
@@ -212,17 +225,23 @@ def karona_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
         ('img', image),
+        ('color', color),
 
     ])
 
 
 def noj_format(data=None):
-    # print('bu data','\n',data)
     images = NojImg.objects.select_related('product').filter(product=data)
+    colors = NojColor.objects.select_related('product').filter(product=data)
     image = []
     for i in images:
         image.append({
             "imgs": "" if not i.img else i.img.url,
+        })
+    color = []
+    for i in colors:
+        color.append({
+            "color": "" if not i.img else colorformat(i),
         })
 
 
@@ -268,13 +287,20 @@ def noj_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
         ('img', image),
+        ('color', color),
 
     ])
 
 
 def baget_format(data=None):
     images = BagetImg.objects.select_related('product').filter(product=data)
+    colors = BagetColor.objects.select_related('product').filter(product=data)
     image = []
+    color = []
+    for i in colors:
+        color.append({
+            "color": "" if not i.img else colorformat(i),
+        })
     for i in images:
         image.append({
             "imgs": "" if not i.img else i.img.url,
@@ -329,13 +355,20 @@ def baget_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
         ('img', image),
+        ('color', color),
 
     ])
 
 
 def dori_format(data=None):
     images = DoritImg.objects.select_related('product').filter(product=data)
+    colors = Dori_Apparat_Color.objects.select_related('product').filter(product=data)
     image = []
+    color = []
+    for i in colors:
+        color.append({
+            "color": "" if not i.img else colorformat(i),
+        })
     for i in images:
         image.append({
             "imgs": "" if not i.img else i.img.url,
@@ -392,6 +425,7 @@ def dori_format(data=None):
         ('description_uz', data.description_uz),
         ('description_ru', data.description_ru),
         ('img', image),
+        ('color', color),
 
     ])
 
