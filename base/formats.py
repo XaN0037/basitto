@@ -49,6 +49,8 @@ def karniz_format(data=None):
         ('name_ru', data.name_ru),
         ('price', data.price),
         ('discount_price', data.discount_price),
+        ('brend', data.brend),
+
 
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
@@ -96,9 +98,11 @@ def kalso_format(data=None):
         })
 
     return OrderedDict([
-        ('id', data.id),
+        ('prod_id', data.id),
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
         ('status', data.status),
+        ('brend', data.brend),
+
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
@@ -153,12 +157,14 @@ def karona_format(data=None):
 
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
-        ('id', data.id),
+        ('prod_id', data.id),
 
         ('status', data.status),
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('brend', data.brend),
+
         ('discount_price', data.discount_price),
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
@@ -204,11 +210,13 @@ def noj_format(data=None):
 
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
-        ('id', data.id),
+        ('prod_id', data.id),
         ('status', data.status),
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('brend', data.brend),
+
         ('quantity', data.quantity),
         ('discount_price', data.discount_price),
         ('made_in_uz', data.made_in_uz),
@@ -255,11 +263,13 @@ def baget_format(data=None):
         })
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
-        ('id', data.id),
+        ('prod_id', data.id),
         ('status', data.status),
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('brend', data.brend),
+
         ('discount_price', data.discount_price),
         ('quantity', data.quantity),
         ('made_in_uz', data.made_in_uz),
@@ -315,11 +325,13 @@ def dori_format(data=None):
 
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
-        ('id', data.id),
+        ('prod_id', data.id),
         ('status', data.status),
         ('name_uz', data.name_uz),
         ('name_ru', data.name_ru),
         ('price', data.price),
+        ('brend', data.brend),
+
         ('quantity', data.quantity),
         ('discount_price', data.discount_price),
         ('made_in_uz', data.made_in_uz),
@@ -437,6 +449,17 @@ def banner_format(data):
 
 
 
+
+
+def prosaved_format(data):
+
+    return OrderedDict([
+        ('prosaved_id', data.id),
+        ('product', prod),
+        ('user_id', data.user.id),
+        ('updated_dt', data.updated_dt),
+        ('create_dt', data.create_dt),
+    ])
 
 
 

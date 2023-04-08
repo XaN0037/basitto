@@ -6,6 +6,7 @@ from apps.dashboard.v1.banner.views import BannerViews
 from apps.dashboard.v1.basket.views import BasketView
 from apps.dashboard.v1.category.views import SubCategoryView
 from apps.dashboard.v1.discount.views import DiscountView
+from apps.dashboard.v1.pages.views import PagesViews
 from apps.dashboard.v1.product.views import ProductView
 from apps.dashboard.v1.comments.views import CommentView, Comments
 from apps.dashboard.v1.prosaved.views import ProsavedView
@@ -35,5 +36,6 @@ urlpatterns = [
 
     path("prosaved/", ProsavedView.as_view()),
 
+    path('pages/', PagesViews.as_view()),
 ]
 
