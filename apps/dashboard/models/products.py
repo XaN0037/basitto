@@ -1,5 +1,7 @@
 from django.db import models
 
+# from apps.dashboard.models.enums import CtgTypes
+
 
 # Create your models here.
 
@@ -16,6 +18,7 @@ class SubCategory(models.Model):
         (5, 'baget'),
         (6, 'dori_aparat'),
     ])
+    # ctg = models.CharField(max_length=6, choices=CtgTypes.choices(), default='karniz')
 
     def __str__(self):
         return f"{self.content_uz} | {self.content_ru}"
