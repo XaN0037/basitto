@@ -448,7 +448,7 @@ def basket_format_get(data):
 
     return OrderedDict([
         ('basket_id', data.id),
-        ('product-id', product),
+        ('product', product),
         ('subctg_id', data.product_subctg_id),
 
         ('user_id', data.user.id),
