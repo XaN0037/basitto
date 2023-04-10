@@ -3,16 +3,38 @@ from base.slavar import TXT
 
 def header(lan='uz'):
     return{
-        "magazin":TXT['MAGAZIN'][lan],
-        "telefon qil":TXT['QONGIROQ'][lan],
-        "raqamni ko'rish":TXT["TELEFON"][lan],
-        "tahrirlash":TXT["TAHIRIRLASH"][lan],
-        "tahrirparol":TXT["TAHRIRPAROL"][lan],
-        "logout":TXT["CHIQISH"][lan],
-        "sevimlimlar":TXT["SEVIMLILAR"][lan],
-        "qidiruv":TXT["QIDIRUV"][lan],
-        "sevimlilarim":TXT["SEVIMLILARIM"][lan],
-        "korzina":TXT["KORZINA"][lan],
+# """qidiruv........"""
+        "qidiruv": TXT["QIDIRUV"][lan],
+        "dangara": TXT["Dangara"][lan],
+        "chiqish": TXT["Chiqish"][lan],
+# """user"""
+
+        "tahrirlash": TXT["TAHIRIRLASH"][lan],
+        "tahrirparol": TXT["TAHRIRPAROL"][lan],
+        "logout": TXT["CHIQISH"][lan],
+# """izbr"""
+        "sevimlilarim": TXT["SEVIMLILARIM"][lan],
+        "sevimlilar": TXT["SEVIMLILAR"][lan],
+# """korzina"""
+        "korzina": TXT["KORZINA"][lan],
+        "tovar": TXT["TOVAR2"][lan],
+        "summ": TXT["SOM"][lan],
+        "kupit": TXT["KUPIT"][lan],
+        "xarid": TXT["BIRGAXARID"][lan],
+        "jami": TXT["JAMI"][lan],
+
+
+
+
+        # # "magazin":TXT['MAGAZIN'][lan],
+        # "telefon qil":TXT['QONGIROQ'][lan],
+        # "raqamni ko'rish":TXT["TELEFON"][lan],
+        # # "tahrirlash":TXT["TAHIRIRLASH"][lan],
+        # # "tahrirparol":TXT["TAHRIRPAROL"][lan],
+        # # "logout":TXT["CHIQISH"][lan],
+        #
+
+
 
     }
 
@@ -20,46 +42,45 @@ def footer(lan='uz'):
 
     return {
     "xaridor": TXT['XARIDOR'][lan],
-    "tulovyetkaz": TXT['TOLOVVAYETKAZISH'][lan],
-
-    "savoljavob": TXT['SAVOLJAVOB'][lan],
-    "rassroch": TXT['RASROCHKA'][lan],
-    "obmen": TXT['ALMASHTIRISH'][lan],
-
+    "yetkaz": TXT['TOLOVVAYETKAZISH'][lan],
     "garant": TXT['GARANTIYA2'][lan],
-    "offerta": TXT['OFFERTA'][lan],
-    "status": TXT['STATUS'][lan],
     "ariza": TXT['ARIZA'][lan],
-    "kompaniya": TXT['KOMPANIYA'][lan],
-    "bizhaqimiz": TXT['BIZHAQIMIZDA'][lan],
-    "blog": TXT['BLOG'][lan],
-    "vakansiya": TXT['VAKANSIA'][lan],
-    "kontact": TXT['KONTAKTI'][lan],
-    "rekvizit": TXT['REKVIZITLAR'][lan],
-    "prinsp": TXT['PRINSPLAR'][lan],
-    "ishlabch": TXT['ISHLAPCHIQARISH'][lan],
-    "takliflar": TXT['TAKLIFLAR'][lan],
-    "bonus": TXT['BONUSPRO'][lan],
+    "taklif": TXT['TAKLIFLAR'][lan],
     "aksiya": TXT['AKSIYALAR'][lan],
     "chegirma": TXT['CHEGIRMALAR'][lan],
-    "rekom": TXT['REKOMENDATSIYA'][lan],
-    "detal": TXT['DETALNIIY'][lan],
+    "detalniy": TXT['DETALNIIY'][lan],
+    "kompaniy": TXT['KOMPANIYA'][lan],
+    "bizhaqimizda": TXT['BIZHAQIMIZDA'][lan],
+    "kontact": TXT['KONTAKTI'][lan],
+    "ishlabchiq": TXT['ISHLAPCHIQARISH'][lan],
     "partnyor": TXT['PARTNYOR'][lan],
-    "franch": TXT['FRANCHAYZING'][lan],
     "yuridik": TXT['YURIDIKAM'][lan],
-    "otele": TXT['OTELE'][lan],
-    "ulgurci": TXT['ULGURCHITAKLIF'][lan],
-    "yangiliklar": TXT['YANGILIKLAR'][lan],
-
+    "ulgurchi": TXT['ULGURCHITAKLIF'][lan],
+    "yangilik": TXT['YANGILIKLAR'][lan],
+    "fintech": TXT['ISHLABCHIQILGAN'][lan],
+    "maxfiylik": TXT['MAXFIYLIK'][lan],
 
     }
 
 
 def page1(lan="uz"):
     page={
-        "xaridor": TXT['XARIDOR'][lan],
-        "xaridor": TXT['XARIDOR'][lan],
-
+        "yangi": TXT['YANGI'][lan],
+        "manzil": TXT['MANZILI'][lan],
+        "xarita": TXT['XARITA'][lan],
+        "manzil2": TXT['MANZILTEXT'][lan],
+        "zakaz": TXT['ZAKAZ'][lan],
+        "skid": TXT['QOSHIMCHASKIDKA'][lan],
+        "inovatsiya": TXT['INNOVATSIYA'][lan],
+        "ishonch": TXT['UVERENNOST'][lan],
+        "bizgayoz": TXT['BIZGAYOZING'][lan],
+        "javob": TXT['JAVOB'][lan],
+        "savolberish": TXT['SAVOLBERISH'][lan],
+        "maslaxatchi": TXT['MASLAHATCHI'][lan],
+        "telqil": TXT['TELQIL'][lan],
+        "tezjavob": TXT['TEZJAVOB'][lan],
+        "savolgajavob": TXT['SAVOLLARGAJAVOB'][lan],
+        "bulimoching": TXT['BOLIMNIOCHING'][lan],
     }
 
 

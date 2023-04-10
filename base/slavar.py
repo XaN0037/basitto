@@ -1,4 +1,15 @@
 TXT = {
+"Dangara": {
+        "uz": "Dang'ara, Farg'ona ",
+        "ru": "Дангара, Фергана ",
+    },
+
+"Chiqish": {
+        "uz": "Chiqishga ishonchingiz komilmi?",
+        "ru": "Вы уверены что хотите выйти?",
+    },
+
+
     "MAGAZIN": {
         "uz": "Magazinlar",
         "ru": "Магазины",
@@ -40,7 +51,12 @@ TXT = {
         "uz": "Savatda",
         "ru": "В корзине",
     },
-    "TOVAR": {
+    "KORZINABUSH": {
+        "uz": "Savatda",
+        "ru": "В корзине",
+    },
+
+    "TOVAR2": {
         "uz": "tovarlar",
         "ru": "tовара",
     },
@@ -132,7 +148,7 @@ TXT = {
         "uz": "Eng yaqin saloningizni toping yoki siz uchun qulay qabul qilish nuqtasi",
         "ru": "Найдите ближайший салон или удобный для вас пункт самовывоза",
     },
-    "MATRASTANLASH": {
+    "MATRASTANLASH2": {
         "uz": "To'shakni tanlang",
         "ru": "Подобрать матрас",
     },
@@ -196,13 +212,18 @@ TXT = {
         "uz": "Savol berish",
         "ru": "Задать вопрос",
     },
-    "VIDEOMASLAHAT": {
-        "uz": "Video maslahat olish",
-        "ru": "Получите видеоконсультацию",
+    "MASLAHAT": {
+        "uz": "Maslahat olish",
+        "ru": "Получите консультацию",
+    },
+
+    "TELQIL": {
+        "uz": "Qo'ng'iroq qiling",
+        "ru": "Позвонить",
     },
     "MASLAHATCHI": {
         "uz": "Askona maslahatchilari sizga mahsulotni onlayn ko'rsatadi va barcha savollarga javob beradi.",
-        "ru": "Консультанты Askona покажут вам товар онлайн и ответят на любые вопросы.",
+        "ru": "Консультанты Basito покажут вам товар онлайн и ответят на любые вопросы.",
     },
     "TEZJAVOB": {
         "uz": "Tez-tez beriladigan savollarga javob toping",
@@ -520,7 +541,7 @@ TXT = {
         "uz":"Tugmani bosish orqali siz taklif shartnomasi va shaxsiy ma'lumotlarni qayta ishlash va himoya qilish siyosatiga rozilik bildirasiz.",
         "ru":"Нажимая на кнопку, вы соглашаетесь с договором-оферты и политикой обработки и защиты персональных данных."
     },
-    "TELEFON":{
+    "TELEFON2":{
         "uz":"Telefon",
         "ru":"Телефон"
     },
