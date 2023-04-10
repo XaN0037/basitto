@@ -21,14 +21,16 @@ class PagesViews(GenericAPIView):
             return Response({"Error": "tilda xatolik"})
 
         methods = ['page1', 'page2', 'page3', 'page4']
-
+        result = ''
         if method in methods:
             if method == "page1":
                 result = page1(params["lan"])
             elif method == "page2":
-                result = page2[params["lan"]]
-            elif method == "page3":
-                result = page3[params["lan"]]
+                result = page2(params["lan"])
+
+
+            # elif method == "page3":
+            #     result = page3[params["lan"]]
 
             return Response({
                 "page": method,

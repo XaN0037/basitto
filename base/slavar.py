@@ -8,6 +8,10 @@ TXT = {
         "uz": "Chiqishga ishonchingiz komilmi?",
         "ru": "Вы уверены что хотите выйти?",
     },
+    "DAN": {
+        "uz": "dan",
+        "ru": "от",
+    },
 
 
     "MAGAZIN": {
@@ -409,7 +413,7 @@ TXT = {
       "uz":"Yetkazib berish va olib ketish",
        "ru":"Доставка и самовывоз",
     },
-    "XUSUSIYATLARI":{
+    "XUSUSIYATLARI2":{
       "uz":"Xususiyatlari",
        "ru":"Характеристики",
     },
@@ -457,6 +461,10 @@ TXT = {
       "uz":"Hajmi",
        "ru":"Размерность",
     },
+    "Hajm":{
+      "uz":"O'lchamlari",
+       "ru":"Размеры",
+    },
     "QATTIQLIGI":{
       "uz":"Qattiqlik",
        "ru":"Жесткость",
@@ -473,6 +481,75 @@ TXT = {
       "uz":"Brend",
        "ru":"Бренд",
     },
+    "UZBYETKAZISH": {
+        "uz": "O'zbekiston hududi bo'ylab yetkazib berish",
+        "ru": "Доставка в пределах территории Узбекистан",
+    },
+"MDHYETKAZISH": {
+        "uz": "O'zbekiston va MDH bo'ylab bepul yetkazib berish",
+        "ru": "Бесплатная доставка по Узбекистану и СНГ",
+    },
+
+
+
+"BUYURTMAKODINIOLING": {
+        "uz": "Buyurtma raqamini oling.",
+        "ru": "Получить номер заказа.",
+    },
+
+"BAYRAMDAM": {
+        "uz": "Tovarlarni o'z-o'zidan etkazib berish bayramlarda amalga oshirilmaydi.",
+        "ru": "Самовывоз товара не осуществляется в праздничные дни.",
+    },
+
+"CHIPTANIOLING": {
+        "uz": "Ombordan tovarlarni olishda siz chiptani oldindan buyurtma qilishingiz kerak.",
+        "ru": "При самовывозе товара со склада нужно заранее заказывать пропуск.",
+    },
+
+"VAQTNIKELISHING": {
+        "uz": "Buyurtmani olish uchun qulay vaqtni kelishib oling.",
+        "ru": "Согласовать время, в которое Вам удобно будет забрать заказ.",
+    },
+"XIZMATQOIDALARI": {
+        "uz": "Xizmat qoidalari",
+        "ru": "Правила оказания услуги",
+    },
+
+
+"TASIDLASHKODINIOLING": {
+        "uz": "Mahsulot mavjudligini tasdiqlashni oling.",
+        "ru": "Получить подтверждение о наличии товара.",
+    },
+
+"KELISHIBOLSIH": {
+        "uz": "Do'konga yoki omborga tashrif buyurishdan oldin, onlayn-do'kon menejeri bilan buyurtma tafsilotlarini kelishib olish kerak:",
+        "ru": "Перед посещением магазина или склада обязательно необходимо согласовать детали заказа с менеджером Интернет-магазина:",
+    },
+
+
+
+    "OLSHINGIZMUMKUN": {
+        "uz": "Buyurtmani Real Goal Forward do'konlari yoki omborlaridan olishingiz mumkin.",
+        "ru": "Вы можете забрать свой заказ в магазинах или на складах Real Goal Forward.",
+    },
+
+"ULGURJI": {
+        "uz": "ulgurji uchun",
+        "ru": "для оптовой продажи",
+    },
+
+
+"OLIBKETISH": {
+        "uz": "Olib ketish",
+        "ru": "Самовывоз",
+    },
+
+    "PULLIK": {
+        "uz": "pullik",
+        "ru": "платно",
+    },
+
     "DOSTAVKAVPREDLAX":{
       "uz":"Shahar ichida yetkazib berish",
        "ru":"Доставка в пределах территории города",
