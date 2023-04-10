@@ -235,7 +235,7 @@ TXT = {
     },
     "BOLIMNIOCHING": {
         "uz": "Bo'limni oching",
-        "en": "Открыть раздел",
+        "ru": "Открыть раздел",
     },
     "XARIDOR": {
         "uz": "Xaridorlar",
