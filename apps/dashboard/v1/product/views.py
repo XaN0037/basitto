@@ -8,14 +8,16 @@ class ProductView(ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         global formatt
-        formatt = karniz_format
         data = request.query_params
-        product_type = data['type']
-        sub_ctg_id = data["sub_category_id"]
-        product_id = data['product_id']
+        product_type = data.get('type')
+        product_id = data.get('product_id')
 
-        nott = 'type' if 'type' not in data else None if 'product_id' not in data \
-            else 'sub_category_id' if 'sub_category_id' not in data else None
+        if product_type is None:
+            nott = 'type'
+        elif product_id is None:
+            nott = 'product_id'
+        else:
+            nott = None
 
         if nott:
             return Response({"Error": f"{nott} kiritilmagan"})
@@ -29,7 +31,7 @@ class ProductView(ListCreateAPIView):
                 l = l
 
             try:
-                for i in Karona.objects.afilter(status=True):
+                for i in Karona.objects.filter(status=True):
                     l.append(karona_format(i))
             except:
                 l = l
@@ -55,98 +57,61 @@ class ProductView(ListCreateAPIView):
                 l = l
             return Response({"data": l})
 
-
-
-
-
         if product_type == "karniz":
             formatt = karniz_format
-            product = Karniz.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                            status=True).first()
+            if product_id == "all":
+                product = Karniz.objects.all()
+                mylist = [formatt(i) for i in product]
+                return Response(mylist)
+
+            product = Karniz.objects.filter(pk=product_id, status=True).first()
 
         elif product_type == "kalso":
             formatt = kalso_format
-            if data['product_id'] == 'all':
-                l = Kalso.objects.filter(category_id=data['sub_category_id'],
-                                         status=True)
-                product = []
-                for i in l:
-                    product.append(formatt(i))
-                return Response(product)
+            if product_id == "all":
+                product = Karniz.objects.all()
+                mylist = [formatt(i) for i in product]
+                return Response(mylist)
 
-            else:
-                product = Kalso.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                               status=True).first()
-
-
-
+            product = Kalso.objects.filter(pk=product_id, status=True).first()
 
         elif product_type == "karona":
             formatt = karona_format
+            if product_id == "all":
+                product = Karniz.objects.all()
+                mylist = [formatt(i) for i in product]
+                return Response(mylist)
 
-            if data['product_id'] == 'all':
-                l = Karona.objects.filter(category_id=data['sub_category_id'],
-                                          status=True)
-                product = []
-                for i in l:
-                    product.append(formatt(i))
-                return Response(product)
-
-            else:
-                product = Karona.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                                status=True).first()
+            product = Karona.objects.filter(pk=product_id, status=True).first()
 
         elif product_type == "noj":
             formatt = noj_format
+            if product_id == "all":
+                product = Karniz.objects.all()
+                mylist = [formatt(i) for i in product]
+                return Response(mylist)
 
-            if data['product_id'] == 'all':
-                l = Noj.objects.filter(category_id=data['sub_category_id'],
-                                       status=True)
-                product = []
-                for i in l:
-                    product.append(formatt(i))
-                return Response(product)
-
-            else:
-                product = Noj.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                             status=True).first()
-
+            product = Noj.objects.filter(pk=product_id, status=True).first()
 
         elif product_type == "baget":
             formatt = baget_format
-            if data['product_id'] == 'all':
-                l = Baget.objects.filter(category_id=data['sub_category_id'],
-                                         status=True)
-                product = []
-                for i in l:
-                    product.append(formatt(i))
-                return Response(product)
+            if product_id == "all":
+                product = Karniz.objects.all()
+                mylist = [formatt(i) for i in product]
+                return Response(mylist)
 
-            else:
-                product = Baget.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                               status=True).first()
+            product = Baget.objects.filter(pk=product_id, status=True).first()
 
         elif product_type == "dori_aparat":
             formatt = dori_format
-            if data['product_id'] == 'all':
-                l = DoriAparat.objects.filter(category_id=data['sub_category_id'],
-                                              status=True)
-                product = []
-                for i in l:
-                    product.append(formatt(i))
-                return Response(product)
+            if product_id == "all":
+                product = Karniz.objects.all()
+                mylist = [formatt(i) for i in product]
+                return Response(mylist)
 
-            else:
-                product = DoriAparat.objects.filter(pk=data['product_id'], category_id=data['sub_category_id'],
-                                                    status=True).first()
+            product = DoriAparat.objects.filter(pk=product_id, status=True).first()
         else:
             return Response({"Error": "bunaqa type mavjud emas"})
-
-        subctg = SubCategory.objects.filter(pk=data['sub_category_id']).first()
-        if not subctg:
-            return Response({
-                "Error": "bunaqa sub category mavjud emas"
-            })
 
         if not product:
             return Response({"Error": " bu sub categoryda bunaqa product mavjud emas"})
