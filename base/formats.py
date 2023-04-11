@@ -431,7 +431,7 @@ def dori_format(data=None):
 
 
 def basket_format_get(data):
-    print('as')
+    print(data,'gggggggggggggggggggggggggggggggggggg')
     subctg = SubCategory.objects.filter(pk=data.product_subctg_id).first()
     product = ''
     if subctg.type == 1:
