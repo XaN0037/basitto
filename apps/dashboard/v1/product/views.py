@@ -69,7 +69,7 @@ class ProductView(ListCreateAPIView):
         elif product_type == "kalso":
             formatt = kalso_format
             if product_id == "all":
-                product = Karniz.objects.all()
+                product = Kalso.objects.all()
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
@@ -78,7 +78,7 @@ class ProductView(ListCreateAPIView):
         elif product_type == "karona":
             formatt = karona_format
             if product_id == "all":
-                product = Karniz.objects.all()
+                product = Karona.objects.all()
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
@@ -87,7 +87,7 @@ class ProductView(ListCreateAPIView):
         elif product_type == "noj":
             formatt = noj_format
             if product_id == "all":
-                product = Karniz.objects.all()
+                product = Noj.objects.all()
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
@@ -96,7 +96,7 @@ class ProductView(ListCreateAPIView):
         elif product_type == "baget":
             formatt = baget_format
             if product_id == "all":
-                product = Karniz.objects.all()
+                product = Baget.objects.all()
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
@@ -105,7 +105,7 @@ class ProductView(ListCreateAPIView):
         elif product_type == "dori_aparat":
             formatt = dori_format
             if product_id == "all":
-                product = Karniz.objects.all()
+                product = DoriAparat.objects.all()
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
