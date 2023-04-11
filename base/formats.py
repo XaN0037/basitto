@@ -50,7 +50,7 @@ def karniz_format(data=None):
     image = []
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
 
     color = []
@@ -236,7 +236,7 @@ def noj_format(data=None):
     image = []
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
     color = []
     for i in colors:
@@ -303,7 +303,7 @@ def baget_format(data=None):
         })
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
     return OrderedDict([
         ('sub_ctg', None if not data.category else subcategory_format(data.category)),
@@ -371,7 +371,7 @@ def dori_format(data=None):
         })
     for i in images:
         image.append({
-            "imgs": "" if not i.img else i.img.url,
+            "img": "" if not i.img else i.img.url,
         })
 
     return OrderedDict([
@@ -431,6 +431,7 @@ def dori_format(data=None):
 
 
 def basket_format_get(data):
+    print(data,'gggggggggggggggggggggggggggggggggggg')
     subctg = SubCategory.objects.filter(pk=data.product_subctg_id).first()
     product = ''
     if subctg.type == 1:
@@ -448,7 +449,7 @@ def basket_format_get(data):
 
     return OrderedDict([
         ('basket_id', data.id),
-        ('product-id', product),
+        ('product', product),
         ('subctg_id', data.product_subctg_id),
 
         ('user_id', data.user.id),
