@@ -11,6 +11,7 @@ class ProductView(ListCreateAPIView):
         data = request.query_params
         product_type = data.get('type')
         product_id = data.get('product_id')
+        sub_category_id = data.get('sub_category_id')
 
         if product_type is None:
             nott = 'type'
@@ -64,7 +65,7 @@ class ProductView(ListCreateAPIView):
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
-            product = Karniz.objects.filter(pk=product_id, status=True).first()
+            product = Karniz.objects.filter(pk=product_id, category_id=sub_category_id, status=True).first()
 
         elif product_type == "kalso":
             formatt = kalso_format
@@ -73,7 +74,7 @@ class ProductView(ListCreateAPIView):
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
-            product = Kalso.objects.filter(pk=product_id, status=True).first()
+            product = Kalso.objects.filter(pk=product_id, category_id=sub_category_id, status=True).first()
 
         elif product_type == "karona":
             formatt = karona_format
@@ -82,7 +83,7 @@ class ProductView(ListCreateAPIView):
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
-            product = Karona.objects.filter(pk=product_id, status=True).first()
+            product = Karona.objects.filter(pk=product_id, category_id=sub_category_id, status=True).first()
 
         elif product_type == "noj":
             formatt = noj_format
@@ -91,7 +92,7 @@ class ProductView(ListCreateAPIView):
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
-            product = Noj.objects.filter(pk=product_id, status=True).first()
+            product = Noj.objects.filter(pk=product_id, category_id=sub_category_id, status=True).first()
 
         elif product_type == "baget":
             formatt = baget_format
@@ -100,7 +101,7 @@ class ProductView(ListCreateAPIView):
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
-            product = Baget.objects.filter(pk=product_id, status=True).first()
+            product = Baget.objects.filter(pk=product_id, category_id=sub_category_id, status=True).first()
 
         elif product_type == "dori_aparat":
             formatt = dori_format
@@ -109,7 +110,7 @@ class ProductView(ListCreateAPIView):
                 mylist = [formatt(i) for i in product]
                 return Response(mylist)
 
-            product = DoriAparat.objects.filter(pk=product_id, status=True).first()
+            product = DoriAparat.objects.filter(pk=product_id, category_id=sub_category_id, status=True).first()
         else:
             return Response({"Error": "bunaqa type mavjud emas"})
 
@@ -117,3 +118,4 @@ class ProductView(ListCreateAPIView):
             return Response({"Error": " bu sub categoryda bunaqa product mavjud emas"})
 
         return Response(formatt(product))
+
