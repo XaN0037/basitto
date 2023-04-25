@@ -1,9 +1,7 @@
 from django.contrib import admin
 
-# from apps.dashboard.models.models import Banner
 from apps.dashboard.models import *
 
-# Register your models here.
 
 
 """Karniz IMG"""
@@ -104,5 +102,5 @@ admin.site.register(Karona, KaronaAdmin)
 admin.site.register(Noj, NojAdmin)
 admin.site.register(Baget, BagetAdmin)
 admin.site.register(DoriAparat, DoriAdmin)
-# admin.site.register(Discount)
 admin.site.register(Banner)
+admin.site.register(User)
