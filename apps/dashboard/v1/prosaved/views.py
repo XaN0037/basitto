@@ -69,7 +69,7 @@ class ProsavedView(GenericAPIView):
         if not product:
             return Response({"Error": " bu sub categoryda bunaqa product mavjud emas"})
 
-        product_saved = Prosaved.objects.filter(product_id=product.id).first()
+        product_saved = Prosaved.objects.filter(product_id=product.id,user_id=user).first()
 
         if product_saved:
             return Response({
@@ -86,6 +86,7 @@ class ProsavedView(GenericAPIView):
                          'product': formatt(product)})
 
     def delete(self, request, *args, **kwargs):
+        user = request.user
         data = request.data
         if not data:
             return Response({
@@ -94,7 +95,7 @@ class ProsavedView(GenericAPIView):
 
         saved_id = data['saved_id']
 
-        product_saved_id = Prosaved.objects.filter(pk=saved_id).first()
+        product_saved_id = Prosaved.objects.filter(pk=saved_id,user_id=user).first()
 
         if not product_saved_id:
             return Response({
